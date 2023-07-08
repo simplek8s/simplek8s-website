@@ -8,9 +8,8 @@
 }
 
 .hero {
-  @extend .px-4;
-  @extend .py-5;
-  @extend .my-5;
+  @extend .p-4;
+  @extend .m-4;
   @extend .text-center;
 
   img {
