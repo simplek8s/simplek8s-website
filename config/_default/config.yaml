@@ -1,0 +1,7 @@
+Params:
+  title: "SimpleK8s"
+  titleSeparator: "-"
+  titleAddition: "Kubernetes cluster with the minimum efforts"
+  description: "Creates and manages a production ready Kubernetes cluster with the minimum efforts."
+  options:
+    bootStrapJs: true
