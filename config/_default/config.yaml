@@ -1,7 +1,7 @@
 Params:
   title: "SimpleK8s"
   titleSeparator: "-"
-  titleAddition: "Kubernetes cluster with the minimum efforts"
-  description: "Creates and manages a production ready Kubernetes cluster with the minimum efforts."
+  titleAddition: "Linux distribution for effortless Kubernetes clusters"
+  description: "A lightweight Linux distribution for effortless production Kubernetes clusters."
   options:
     bootStrapJs: true
