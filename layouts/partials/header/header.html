@@ -1,12 +1,20 @@
 <div class="container">
   <header class="d-flex justify-content-end flex-wrap align-items-center py-3">
+    <a href="/" class="header-logo">
+      <img src="{{ "/favicon.png" | relURL }}" height="24px" />
+      Simple<span class="highlight">K8s</span>
+    </a>
     <ul class="nav nav-underline">
       {{- $current := . -}}
       {{ range (sort .Site.Menus.main "Weight" "desc") -}}
         {{- $active := and (eq $current.RelPermalink "/") (eq .URL "/") -}}
         {{- $active = or $active (and (ne .URL "/") (hasPrefix $current.RelPermalink .URL)) -}}
         <li class="nav-item">
-          <a href="{{ .URL | relURL }}" class="nav-link{{ if $active }} active{{ end }}" aria-current="page">
+          <a
+            href="{{ .URL | relURL }}"
+            class="nav-link {{ if $active }}active{{ end }}"
+            aria-current="page"
+          >
             {{ .Name }}
           </a>
         </li>

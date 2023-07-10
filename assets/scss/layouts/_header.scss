@@ -1,0 +1,22 @@
+.header-logo {
+    @extend .fw-bold;
+    @extend .text-body-emphasis;
+    @extend .d-flex;
+    @extend .align-items-center;
+    @extend .mb-3;
+    @extend .mb-md-0;
+    @extend .me-md-auto;
+    @extend .link-body-emphasis;
+    @extend .text-decoration-none;
+    @extend .fs-4;
+
+    text-shadow: 1px 1px 2px rgba($color: #000000, $alpha: .25);
+
+    img {
+        @extend .pe-1;
+    }
+
+    .highlight {
+        color: $blue;
+    }
+}
