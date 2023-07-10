@@ -23,3 +23,4 @@ Params:
   description: "A lightweight Linux distribution for effortless Kubernetes clusters."
   options:
     bootStrapJs: true
+    breadCrumb: true

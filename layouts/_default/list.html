@@ -1,5 +1,13 @@
 {{ define "main" }}
   <main class="container">
+    {{ if .Site.Params.options.breadCrumb -}}
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          {{ partial "main/breadcrumb" . -}}
+          <li class="breadcrumb-item active" aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+    {{ end }}
     <article>
       <header>
         <h2>{{ .Title }}</h2>
