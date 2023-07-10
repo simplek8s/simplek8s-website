@@ -1,3 +1,21 @@
+Menus:
+  main:
+    - Name: Home
+      URL: /
+      Weight: 100
+    - Name: Download
+      URL: /download/
+      Weight: 90
+    - Name: Documentation
+      URL: /documentation/
+      Weight: 80
+    - Name: Blog
+      URL: /blog/
+      Weight: 70
+    - Name: Code
+      URL: /code/
+      Weight: 60
+
 Params:
   title: "SimpleK8s"
   titleSeparator: "-"

@@ -1,9 +1,8 @@
 ---
 title: "Features"
 date: 2023-07-10T01:51:00+02:00
-draft: true
+draft: false
 ---
-# Features
 
 - **Simplified**: Effortlessly create a production-ready Kubernetes cluster using a web UI.
 
