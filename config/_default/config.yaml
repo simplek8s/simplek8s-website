@@ -9,8 +9,8 @@ Menus:
     - Name: Documentation
       URL: /documentation/
       Weight: 80
-    - Name: Blog
-      URL: /blog/
+    - Name: News
+      URL: /news/
       Weight: 70
     - Name: Code
       URL: /code/
