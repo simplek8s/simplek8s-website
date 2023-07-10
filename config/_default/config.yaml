@@ -19,7 +19,7 @@ Menus:
 Params:
   title: "SimpleK8s"
   titleSeparator: "-"
-  titleAddition: "Linux distribution for effortless Kubernetes clusters"
+  titleAddition: "Linux distribution for effortless Kubernetes"
   description: "A lightweight Linux distribution for effortless Kubernetes clusters."
   options:
     bootStrapJs: true
