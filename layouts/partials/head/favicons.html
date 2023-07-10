@@ -1,9 +1,9 @@
 {{ if os.FileExists "static/favicon.ico" }}
-  <link rel="icon" href="{{ "favicon.ico" | absURL }}" sizes="any" />
+  <link rel="icon" href="{{ "/favicon.ico" | relURL }}" sizes="any" />
 {{- end -}}
 {{ if os.FileExists "static/favicon.svg" }}
-  <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}" />
+  <link rel="icon" type="image/svg+xml" href="{{ "/favicon.svg" | relURL }}" />
 {{- end -}}
 {{ if os.FileExists "static/favicon.png" }}
-  <link rel="icon" type="image/png" href="{{ "favicon.png" | absURL }}" sizes="any" />
+  <link rel="icon" type="image/png" href="{{ "/favicon.png" | relURL }}" sizes="any" />
 {{- end -}}
