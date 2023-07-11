@@ -4,7 +4,7 @@ date: 2023-07-10T01:51:00+02:00
 draft: false
 ---
 
-- 🧮 **Simplified**: Effortlessly create a production-ready Kubernetes cluster using a web UI.
+- 🧩 **Simplified**: Effortlessly create a production-ready Kubernetes cluster using a web UI.
 
 - 🧭 **Predictable**: Streamlined essentials for a production-ready Kubernetes cluster, free from unnecessary bloatware.
 
