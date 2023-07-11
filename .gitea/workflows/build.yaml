@@ -36,3 +36,9 @@ jobs:
           push: true
           tags: |
             registry.jlsalvador.online/simplek8s/website:latest
+      -
+        name: Webhook Keel
+        uses: https://github.com/joelwmale/webhook-action@master
+        with:
+          url: ${{ secrets.KEEL_WEBHOOK_URL }}
+          body: '{"name":"registry.jlsalvador.online/simplek8s/website","tag":"latest"}'
