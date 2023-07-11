@@ -24,4 +24,4 @@ draft: false
 
 - ⏫ **Upgradeable**: Perform upgrades anytime with a simple `simplek8s-upgrade` command and reboot.
 
-- 🍴 **Forkable**: Gain independence by cloning this distribution whenever desired.
+- 🧬 **Cloneable**: Gain independence by cloning this distribution whenever desired.
