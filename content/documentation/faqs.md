@@ -69,5 +69,5 @@ A: Currently, there is no official community established. However, you can reach
 
 **Q: Are there any known issues or limitations with this Linux distribution that I should be aware of?**
 
-A: SimpleK8s operate using an `/usr` read-only, and a `/` memory-backed storage. To ensure proper functionality, certain directories are bind-mounted at `/var/${DIRECTORY}>`, including `/etc`, `/home`, `/mnt`, `/usr/local`, `/usr/libexec`, `/root`, and `/opt`. It is essential to mount a persistent storage at `/var` to maintain data integrity and preserve configurations. Please keep this in mind while working with SimpleK8s.
+A: SimpleK8s operate using an `/usr` read-only, and a `/` memory-backed storage. To ensure proper functionality, certain directories are bind-mounted at `/var/${DIRECTORY}`, including `/etc`, `/home`, `/mnt`, `/usr/local`, `/usr/libexec`, `/root`, and `/opt`. It is essential to mount a persistent storage at `/var` to maintain data integrity and preserve configurations. Please keep this in mind while working with SimpleK8s.
 
