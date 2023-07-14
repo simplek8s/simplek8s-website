@@ -8,7 +8,7 @@ draft: false
 
 - 🧭 **Predictable**: Streamlined essentials for a production-ready Kubernetes cluster, free from unnecessary bloatware.
 
-- 🪶 **Lightweight**: Only ~35Mb in size, built with Buildroot for embedded Linux distributions.
+- 🪶 **Lightweight**: Only ~40MB in size, built with Buildroot for embedded Linux distributions.
 
 - 📦 **Embedded**: Complete Linux distribution packed in a single bootable file.
 
