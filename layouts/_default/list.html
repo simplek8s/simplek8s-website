@@ -16,7 +16,7 @@
     </article>
     <ul>
       <!-- Ranges through content/posts/*.md -->
-      {{ range .Pages }}
+      {{ range .Pages.ByWeight }}
         <li>
           <a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
