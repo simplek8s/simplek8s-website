@@ -25,3 +25,12 @@ draft: false
 - ⏫ **Upgradeable**: Perform upgrades anytime with a simple `simplek8s-upgrade` command and reboot.
 
 - 🧬 **Cloneable**: Gain independence by cloning this distribution whenever desired.
+
+- 💰 **Non-profit driven**: Prioritizes the interests of the user community and aims to provide a high-quality Kubernetes distribution.
+
+
+## Working on
+
+- 📑 **Documentation**: Comprehensive documentation to help users understand and utilize the features effectively.
+
+- 📚 **Extensibility**: Provides a range of extensions, allowing users to integrate custom tools, or kernel modules into SimpleK8s.
