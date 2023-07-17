@@ -2,6 +2,7 @@
 @import "bootstrap/scss/bootstrap";
 
 /** Import theme styles */
-@import "layouts/_index";
-@import "layouts/_header";
-@import "layouts/_footer";
+@import "common/global";
+@import "layouts/index";
+@import "layouts/header";
+@import "layouts/footer";
