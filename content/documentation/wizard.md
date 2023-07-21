@@ -19,8 +19,9 @@ By default, the SimpleK8s-Wizard is enabled. However, you can disable it using t
 
 
 ## Sections
-- **Installer** (visible only on non-persistent environments)
-- **Status**
+
+- **[Installer](#installer)** (visible only on non-persistent environments)
+- **[Status](#status)**
 	- **Node**
 		- Name
 		- CPU
@@ -29,8 +30,9 @@ By default, the SimpleK8s-Wizard is enabled. However, you can disable it using t
 		- Interfaces
 		- Mountpoints
 		- Process list
-- **KubeAdm**
-	- **Create or Join a K8s cluster**
+- **[KubeAdm](#kubeadm)**
+	- **Create or Join a K8s cluster** (visible only on nodes that have not the folder `/etc/kubernetes`)
+	- **Clean up** (visible only on nodes that have the folder `/etc/kubernetes`)
 	- **Tokens** (visible only on Control Plane nodes after creation/joining)
 	- **Add-ons**
 		- Network controller (CNI)
