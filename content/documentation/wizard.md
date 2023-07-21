@@ -9,7 +9,7 @@ The SimpleK8s-Wizard is a user-friendly program that enables you to manage your 
 
 > ℹ️ **Note:** The `Installer` section is only visible when using SimpleK8s without persistence.
 
-To access the web UI, go to: https://<your-node-IP>:5443
+To access the web UI, go to: `https://<your-node-IP>:5443`
 
 By default, the SimpleK8s-Wizard is enabled. However, you can disable it using the following command:
 
