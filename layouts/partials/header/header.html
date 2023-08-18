@@ -11,7 +11,7 @@
         {{- $active = or $active (and (ne .URL "/") (hasPrefix $current.RelPermalink .URL)) -}}
         <li>
           <a
-            href="{{ .URL | relURL }}"
+            href="{{ if hasPrefix .URL `http` }}{{ .URL }}{{ else }}{{ .URL | relURL }}{{ end }}"
             class="{{ if $active }}active{{ end }}"
             aria-current="page"
           >
