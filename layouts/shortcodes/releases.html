@@ -1,0 +1,40 @@
+{{ $data := "" }}
+{{ $url := .Get "url" }}
+{{ with resources.GetRemote $url }}
+  {{ with .Err }}
+    {{ errorf "%s" . }}
+  {{ else }}
+    {{ $data = . }}
+  {{ end }}
+{{ else }}
+  {{ errorf "Unable to get remote resource %q" $url }}
+{{ end }}
+
+<table>
+  <thead>
+    <th>Release</th>
+    <th>SHA256 Hash</th>
+  </thead>
+  <tbody>
+{{ $lines := split $data.Content "\n" }}
+{{ range seq (sub (len $lines) 1) }}
+{{ $i := . }}
+{{ $line := index $lines (sub (len $lines) $i) }}
+{{ $data := split $line " "}}
+{{ $hash := index $data 0 }}
+{{ $filename := trim (index $data (sub (len $data) 1)) "*" }}
+
+{{ if or (eq $hash "") (eq $filename "") }}
+  {{ continue }}
+{{ end }}
+  <tr>
+    <td>
+      <a href="{{ trim $url "SHA256SUMS" }}{{ $filename }}">
+        {{ $filename }}
+      </a>
+    </td>
+    <td>{{ $hash }}</td>
+  </tr>
+{{ end }}
+  </tbody>
+</table>
