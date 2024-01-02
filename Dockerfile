@@ -5,6 +5,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 RUN apk add --no-cache --repository=https://dl-cdn.alpinelinux.org/alpine/edge/community hugo
 COPY . ./
+ARG CACHEBUST
+RUN echo "$CACHEBUST"
 RUN hugo --minify
 
 FROM nginx:latest
