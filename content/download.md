@@ -12,8 +12,7 @@ draft: false
 - [Dev](#dev)
 
 
-## Stable
-
+{{< details summary="Stable" open=true id="stable" class="primary" >}}
 These links are parsed from the file [SHA256SUMS](https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS).
 
 ```console
@@ -23,10 +22,10 @@ $ gpg --verify SHA256SUMS.gpg SHA256SUMS
 ```
 
 {{< releases url="https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS" >}}
+{{< /details >}}
 
 
-## Rolling
-
+{{< details summary="Rolling" open=false id="rolling" class="warning" >}}
 These links are parsed from the file [SHA256SUMS](https://dl.simplek8s.org/simplek8s/rolling/SHA256SUMS).
 
 ```console
@@ -36,10 +35,10 @@ $ gpg --verify SHA256SUMS.gpg SHA256SUMS
 ```
 
 {{< releases url="https://dl.simplek8s.org/simplek8s/rolling/SHA256SUMS" >}}
+{{< /details >}}
 
 
-## Dev
-
+{{< details summary="Dev" open=false id="dev" class="danger" >}}
 These links are parsed from the file [SHA256SUMS](https://dl.simplek8s.org/simplek8s/dev/SHA256SUMS).
 
 ```console
@@ -49,3 +48,4 @@ $ gpg --verify SHA256SUMS.gpg SHA256SUMS
 ```
 
 {{< releases url="https://dl.simplek8s.org/simplek8s/dev/SHA256SUMS" >}}
+{{< /details >}}
