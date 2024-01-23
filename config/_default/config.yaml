@@ -24,3 +24,8 @@ Params:
   options:
     bootStrapJs: true
     breadCrumb: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
