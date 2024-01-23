@@ -1,11 +1,93 @@
 p.warning {
-    background-color: $colorAlmod;
-    padding: 0.5em;
-    border-radius: 0.5em;
+  background-color: $colorAlmod;
+  padding: 0.5em;
+  border-radius: 0.5em;
 }
 
 p.info {
-    background-color: $colorMintGreen;
-    padding: 0.5em;
-    border-radius: 0.5em;
+  background-color: $colorMintGreen;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+details.primary > summary {
+  background-color: $primary-bg-subtle;
+  color: $primary-text-emphasis;
+}
+details.primary {
+  border: 2px solid $primary-border-subtle;
+}
+
+details.secondary > summary {
+  background-color: $secondary-bg-subtle;
+  color: $secondary-text-emphasis;
+}
+details.secondary {
+  border: 2px solid $secondary-border-subtle;
+}
+
+details.success > summary {
+  background-color: $success-bg-subtle;
+  color: $success-text-emphasis;
+}
+details.success {
+  border: 2px solid $success-border-subtle;
+}
+
+details.info > summary {
+  background-color: $info-bg-subtle;
+  color: $info-text-emphasis;
+}
+details.info {
+  border: 2px solid $info-border-subtle;
+}
+
+details.warning > summary {
+  background-color: $warning-bg-subtle;
+  color: $warning-text-emphasis;
+}
+details.warning {
+  border: 2px solid $warning-border-subtle;
+}
+
+details.danger > summary {
+  background-color: $danger-bg-subtle;
+  color: $danger-text-emphasis;
+}
+details.danger {
+  border: 2px solid $danger-border-subtle;
+}
+
+details.light > summary {
+  background-color: $light-bg-subtle;
+  color: $light-text-emphasis;
+}
+details.light {
+  border: 2px solid $light-border-subtle;
+}
+
+details.dark > summary {
+  background-color: $dark-bg-subtle;
+  color: $dark-text-emphasis;
+}
+details.dark {
+  border: 2px solid $dark-border-subtle;
+}
+
+details > summary {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+details > summary > * {
+  display: inline;
+}
+
+details {
+  padding: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+details > div.content {
+  padding: 0.5rem;
 }

@@ -1,0 +1,21 @@
+{{- $summary := "" }}
+{{- $open := false }}
+{{- $id := "" }}
+{{- $class := "" }}
+{{- if .IsNamedParams }}
+  {{- $summary = .Get "summary" }}
+  {{- with .Get "open" }}{{ $open = . }}{{ end }}
+  {{- with .Get "id" }}{{ $id = . }}{{ end }}
+  {{- with .Get "class" }}{{ $class = . }}{{ end }}
+{{- else }}
+  {{- $summary = .Get 0 }}
+  {{- with .Get 1 }}{{ $open = . }}{{ end }}
+  {{- with .Get 2 }}{{ $id = . }}{{ end }}
+  {{- with .Get 3 }}{{ $class = . }}{{ end }}
+{{- end }}
+<details{{ if $open }} open{{ end }}{{ if $id }} id="{{ $id }}"{{ end }}{{ if $class }} class="{{ $class }}"{{ end }}>
+  <summary>{{ $summary }}</summary>
+  <div class="content">
+      {{ .Inner | markdownify }}
+  </div>
+</details>
