@@ -19,10 +19,36 @@ RUN echo "$CACHEBUST"
 RUN hugo --minify
 
 FROM nginx:latest
-RUN sed -i 's/#error_page  404/error_page  404/g' /etc/nginx/conf.d/default.conf
+
+COPY <<EOF /etc/nginx/conf.d/default.conf
+server {
+    listen       80;
+    server_name  localhost;
+
+    #access_log  /var/log/nginx/host.access.log  main;
+
+	location /download {
+		expires 1h;
+        root /usr/share/nginx/html;
+	}
+    location / {
+		expires 1d;
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    error_page  404              /404.html;
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+EOF
+
 COPY <<EOF /etc/nginx/conf.d/privacy.conf
 server_tokens off;
 EOF
+
 COPY <<EOF /etc/nginx/conf.d/gzip.conf
 gzip on;
 gzip_disable "msie6";
@@ -53,4 +79,5 @@ gzip_types
   text/plain
   text/xml;
 EOF
+
 COPY --from=builder /usr/src/app/public /usr/share/nginx/html/
