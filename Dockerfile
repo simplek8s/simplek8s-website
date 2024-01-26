@@ -16,7 +16,7 @@ RUN npm ci
 COPY . ./
 ARG CACHEBUST
 RUN echo "$CACHEBUST"
-RUN hugo --minify
+RUN hugo --minify --environment production
 
 FROM nginx:latest
 
