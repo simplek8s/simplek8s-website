@@ -91,3 +91,76 @@ details {
 details > div.content {
   padding: 0.5rem;
 }
+
+div.releases:has([id="channelStable"]:checked)
+  table#tableReleases
+  tr:not(.channelStable),
+div.releases:has([id="channelRolling"]:checked)
+  table#tableReleases
+  tr:not(.channelRolling),
+div.releases:has([id="channelDev"]:checked)
+  table#tableReleases
+  tr:not(.channelDev) {
+  display: none;
+}
+
+div.releases:has([id="columnChannel"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(2),
+div.releases:has([id="columnDistribution"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(3),
+div.releases:has([id="columnVersion"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(4),
+div.releases:has([id="columnArchitecture"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(5),
+div.releases:has([id="columnComponent"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(6),
+div.releases:has([id="columnCompression"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(7),
+div.releases:has([id="columnSHA256Hash"]:not(:checked))
+  table#tableReleases
+  tr
+  :nth-child(8) {
+  display: none;
+}
+
+div.releases:has([id="architectureX8664"]:checked)
+  table#tableReleases
+  tr:not(.archx8664),
+div.releases:has([id="architectureRPi4"]:checked)
+  table#tableReleases
+  tr:not(.archRPi4) {
+  display: none;
+}
+
+div.releases:has([id="compressYes"]:checked)
+  table#tableReleases
+  tr:not(.compressYes),
+div.releases:has([id="compressNo"]:checked)
+  table#tableReleases
+  tr:not(.compressNo) {
+  display: none;
+}
+
+div.releases:has([id="componentKernel"]:checked)
+  table#tableReleases
+  tr:not(.componentKernel),
+div.releases:has([id="componentImage"]:checked)
+  table#tableReleases
+  tr:not(.componentImage),
+div.releases:has([id="componentInformation"]:checked)
+  table#tableReleases
+  tr:not(.componentInformation) {
+  display: none;
+}

@@ -1,42 +1,221 @@
-{{ $data := "" }}
-{{ $url := .Get "url" }}
-{{ with resources.GetRemote $url }}
-  {{ with .Err }}
-    {{ errorf "%s" . }}
+{{ $releases := slice }}
+{{ $channels := dict "stable" "https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS" "rolling" "https://dl.simplek8s.org/simplek8s/rolling/SHA256SUMS" "dev" "https://dl.simplek8s.org/simplek8s/dev/SHA256SUMS" }}
+
+{{ range $channel, $url := $channels }}
+  {{ $data := "" }}
+  {{ with resources.GetRemote $url }}
+    {{ with .Err }}
+      {{ errorf "%s" . }}
+    {{ else }}
+      {{ $data = . }}
+    {{ end }}
   {{ else }}
-    {{ $data = . }}
+    {{ errorf "Unable to get remote resource %q" $url }}
   {{ end }}
-{{ else }}
-  {{ errorf "Unable to get remote resource %q" $url }}
+
+  {{ $regex := `(?m)^(?P<hash>[a-fA-F0-9]{64})\s+\*?(?P<distribution>[-_\w]+)\.(?P<version>(?:[-_\w]+)|(?:\d+\.\d+\.\d+)+)\.(?P<architecture>[-_\w]+)\.(?P<component>efi|kernel|img|info.json|)(?:\.(?P<compression>zst|xz))?$` }}
+  {{ with $matches := findRESubmatch $regex $data.Content }}
+    {{ range $matches }}
+      {{ $hash := index . 1 }}
+      {{ $distribution := index . 2 }}
+      {{ $version := index . 3 }}
+      {{ $architecture := index . 4 }}
+      {{ $component := index . 5 }}
+      {{ $compression := index . 6 }}
+      {{ $filename := trim (delimit (slice $distribution $version $architecture $component $compression) "." ) "." }}
+      {{ $releaseUrl := printf "%s%s" (trim $url "SHA256SUMS") $filename }}
+      {{ $release := dict "channel" $channel "hash" $hash "distribution" $distribution "version" $version "architecture" $architecture "component" $component "compression" $compression "filename" $filename "url" $releaseUrl }}
+      {{ $releases = $releases | append $release }}
+    {{ end }}
+  {{ end }}
 {{ end }}
 
-<div class="table-responsive">
-<table class="table table-striped table-bordered shadow-sm">
-  <thead>
-    <th>Release</th>
-    <th>SHA256 Hash</th>
-  </thead>
-  <tbody>
-{{ $lines := split $data.Content "\n" }}
-{{ range seq (sub (len $lines) 1) }}
-{{ $i := . }}
-{{ $line := index $lines (sub (len $lines) $i) }}
-{{ $data := split $line " "}}
-{{ $hash := index $data 0 }}
-{{ $filename := trim (index $data (sub (len $data) 1)) "*" }}
+<div class="releases mt-4">
+  <div class="filter">
 
-{{ if or (eq $hash "") (eq $filename "") }}
-  {{ continue }}
-{{ end }}
-  <tr>
-    <td>
-      <a href="{{ trim $url "SHA256SUMS" }}{{ $filename }}">
-        {{ $filename }}
-      </a>
-    </td>
-    <td class="font-monospace">{{ $hash }}</td>
-  </tr>
-{{ end }}
-  </tbody>
-</table>
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Channel:</label>
+      <div class="col-sm-10">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="channel" id="channelStable" checked/>
+            <label class="form-check-label" for="channelStable">🛡️ Stable</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="channel" id="channelRolling"/>
+            <label class="form-check-label" for="channelRolling">🧪 Rolling</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="channel" id="channelDev"/>
+            <label class="form-check-label" for="channelDev">🚧 Dev</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Architecture:</label>
+      <div class="col-sm-10">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="architecture" id="architectureX8664" checked>
+            <label class="form-check-label" for="architectureX8664">x86-64</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="architecture" id="architectureRPi4">
+            <label class="form-check-label" for="architectureRPi4">Raspberry Pi 4</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Component:</label>
+      <div class="col-sm-10">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="component" id="componentImage" checked/>
+            <label class="form-check-label" for="componentImage">💿 Image</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="component" id="componentKernel"/>
+            <label class="form-check-label" for="componentKernel">🐧 Kernel</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="component" id="componentInformation"/>
+            <label class="form-check-label" for="componentInformation">📝 Information</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Compressed:</label>
+      <div class="col-sm-10">
+        <ul class="list-group list-group-horizontal">
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="compressed" id="compressYes" checked>
+            <label class="form-check-label" for="compressYes">Yes</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="compressed" id="compressNo">
+            <label class="form-check-label" for="compressNo">No</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <label class="col-sm-2 col-form-label">Show:</label>
+      <div class="col-sm-10">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnChannel">
+          <label class="form-check-label" for="columnChannel">Channel</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnDistribution">
+          <label class="form-check-label" for="columnDistribution">Distribution</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnVersion" checked>
+          <label class="form-check-label" for="columnVersion">Version</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnArchitecture">
+          <label class="form-check-label" for="columnArchitecture">Architecture</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnComponent">
+          <label class="form-check-label" for="columnComponent">Component</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnCompression">
+          <label class="form-check-label" for="columnCompression">Compression</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="columnSHA256Hash" checked>
+          <label class="form-check-label" for="columnSHA256Hash">SHA256 Hash</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- END: filters -->
+
+  <div class="table-responsive">
+    <table id="tableReleases" class="table table-bordered shadow-sm">
+      <thead>
+        <tr class="channelStable channelRolling channelDev archx8664 archRPi4 componentKernel componentImage componentInformation compressYes compressNo">
+          <th>Url</th>
+          <th>Channel</th>
+          <th>Distribution</th>
+          <th>Version</th>
+          <th>Architecture</th>
+          <th>Component</th>
+          <th>Compression</th>
+          <th>SHA256 Hash</th>
+        </tr>
+      </thead>
+      <tbody>
+    {{ range $releases | collections.Reverse }}
+      {{ $classChannel := "channelNone" }}
+      {{ if eq .channel "stable" }}{{ $classChannel = "channelStable" }}{{ end }}
+      {{ if eq .channel "rolling" }}{{ $classChannel = "channelRolling" }}{{ end }}
+      {{ if eq .channel "dev" }}{{ $classChannel = "channelDev" }}{{ end }}
+
+      {{ $classArch := "archNone"}}
+      {{ if or (eq .architecture "arm64") (eq .architecture "rpi4") }}{{ $classArch = "archRPi4" }}{{ end }}
+      {{ if eq .architecture "x86-64" }}{{ $classArch = "archx8664" }}{{ end }}
+
+      {{ $classCompressed := "compressNo" }}
+      {{ if or (eq .compression "zst") (eq .compression "xz") }}{{ $classCompressed = "compressYes" }}{{end}}
+
+      {{ $classComponent := "componentNone" }}
+      {{ if or (eq .component "kernel") (eq .component "efi") }}{{ $classComponent = "componentKernel" }}{{end}}
+      {{ if eq .component "img" }}{{ $classComponent = "componentImage" }}{{end}}
+      {{ if eq .component "info.json" }}{{ $classComponent = "componentInformation" }}{{ $classCompressed = "compressNo compressYes" }}{{end}}
+
+      <tr class="{{ printf "%s %s %s %s" $classChannel $classArch $classComponent $classCompressed }}">
+        <td>
+          <a href="{{ .url }}">
+            {{ .filename }}
+          </a>
+        </td>
+        <td>{{ .channel }}</td>
+        <td>{{ .distribution }}</td>
+        <td>{{ .version }}</td>
+        <td>{{ .architecture }}</td>
+        <td>{{ .component }}</td>
+        <td>{{ .compression }}</td>
+        <td class="font-monospace">{{ .hash }}</td>
+      </tr>
+    {{ end }}
+      </tbody>
+    </table>
+  </div>
+  <!-- END: table -->
+
+  <div class="row mt-3 small">
+    <div class="col-12">
+      These links are parsed from files:
+    </div>
+
+    <div class="col-12">
+      <ul class="mb-3">
+      {{ range $channels }}
+        <li><a href="{{ . }}">{{ . }}</a></li>
+      {{ end }}
+      </ul>
+    </div>
+
+    <div class="col-12 ">You can check the PGP signature as following:</div>
+
+    <div class="col-12 mt-1 highlight">
+      <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console">$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS -O
+$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS.gpg -O
+$ gpg --verify SHA256SUMS.gpg SHA256SUMS</code></pre>
+    </div>
+  </div>
+
 </div>
+<!-- END: releases -->
