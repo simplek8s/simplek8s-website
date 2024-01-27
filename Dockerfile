@@ -1,13 +1,14 @@
-FROM hugomods/hugo:exts AS builder_base
+FROM --platform=$BUILDPLATFORM hugomods/hugo:exts AS builder_base
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM builder_base as builder
+FROM --platform=$BUILDPLATFORM builder_base as builder
 COPY . ./
 ARG CACHEBUST
 RUN echo "$CACHEBUST"
-RUN hugo --minify --environment production
+RUN --mount=type=cache,target=/tmp/hugo_cache \
+    hugo --minify --environment production
 
 FROM nginx:latest as site
 COPY <<EOF /etc/nginx/conf.d/privacy.conf
