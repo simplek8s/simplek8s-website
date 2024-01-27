@@ -3,7 +3,8 @@
 
 {{ range $channel, $url := $channels }}
   {{ $data := "" }}
-  {{ with resources.GetRemote $url }}
+  {{ $cacheKey := print $url (now.Format "2006-01-02 03 PM") }}
+  {{ with resources.GetRemote $url (dict "key" $cacheKey) }}
     {{ with .Err }}
       {{ errorf "%s" . }}
     {{ else }}
@@ -23,7 +24,7 @@
       {{ $component := index . 5 }}
       {{ $compression := index . 6 }}
       {{ $filename := trim (delimit (slice $distribution $version $architecture $component $compression) "." ) "." }}
-      {{ $releaseUrl := printf "%s%s" (trim $url "SHA256SUMS") $filename }}
+      {{ $releaseUrl := print (trim $url "SHA256SUMS") $filename }}
       {{ $release := dict "channel" $channel "hash" $hash "distribution" $distribution "version" $version "architecture" $architecture "component" $component "compression" $compression "filename" $filename "url" $releaseUrl }}
       {{ $releases = $releases | append $release }}
     {{ end }}
