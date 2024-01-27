@@ -1,43 +1,18 @@
-FROM hugomods/hugo:exts AS builder
+FROM hugomods/hugo:exts AS builder_base
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci
+
+FROM builder_base as builder
 COPY . ./
 ARG CACHEBUST
 RUN echo "$CACHEBUST"
 RUN hugo --minify --environment production
 
-FROM nginx:latest
-
-COPY <<EOF /etc/nginx/conf.d/default.conf
-server {
-    listen       80;
-    server_name  localhost;
-
-    #access_log  /var/log/nginx/host.access.log  main;
-
-	location /download {
-		expires 1h;
-        root /usr/share/nginx/html;
-	}
-    location / {
-		expires 1d;
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-
-    error_page  404              /404.html;
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-}
-EOF
-
+FROM nginx:latest as site
 COPY <<EOF /etc/nginx/conf.d/privacy.conf
 server_tokens off;
 EOF
-
 COPY <<EOF /etc/nginx/conf.d/gzip.conf
 gzip on;
 gzip_disable "msie6";
@@ -68,5 +43,28 @@ gzip_types
   text/plain
   text/xml;
 EOF
+COPY <<EOF /etc/nginx/conf.d/default.conf
+server {
+    listen       80;
+    server_name  localhost;
 
+    #access_log  /var/log/nginx/host.access.log  main;
+
+	location /download {
+		expires 1h;
+        root /usr/share/nginx/html;
+	}
+    location / {
+		expires 1d;
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    error_page  404              /404.html;
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+EOF
 COPY --from=builder /usr/src/app/public /usr/share/nginx/html/
