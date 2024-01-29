@@ -143,9 +143,9 @@
   </div>
   <!-- END: filters -->
 
-  <div class="table-responsive shadow-sm">
+  <div class="table-responsive mb-3 shadow-sm">
     <table id="tableReleases" class="table table-bordered mb-0">
-      <thead>
+      <thead class="table-light">
         <tr class="channelStable channelRolling channelDev archx8664 archRPi4 componentKernel componentImage componentInformation compressYes compressNo">
           <th>Url</th>
           <th>Channel</th>
@@ -179,7 +179,7 @@
       <tr class="{{ printf "%s %s %s %s" $classChannel $classArch $classComponent $classCompressed }}">
         <td>
           <a target="_blank" href="{{ .url }}" title="{{ .filename }}" class="text-decoration-none">
-            🔗
+            ⬇️
           </a>
         </td>
         <td>{{ .channel }}</td>
@@ -196,11 +196,10 @@
   </div>
   <!-- END: table -->
 
-  <div class="row mt-3 small">
+  <div class="row small">
     <div class="col-12">
       These links are parsed from files:
     </div>
-
     <div class="col-12">
       <ul class="mb-3">
       {{ range $channels }}
@@ -208,11 +207,11 @@
       {{ end }}
       </ul>
     </div>
-
-    <div class="col-12 ">You can check the PGP signature as following:</div>
-
-    <div class="col-12 mt-1 highlight">
-      <pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console">$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS -O
+    <div class="col-12">
+      You can check the PGP signature as following:
+    </div>
+    <div class="col-12 highlight">
+      <pre><code class="language-console" data-lang="console">$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS -O
 $ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS.gpg -O
 $ gpg --verify SHA256SUMS.gpg SHA256SUMS</code></pre>
     </div>
