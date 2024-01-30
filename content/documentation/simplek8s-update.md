@@ -1,7 +1,7 @@
 ---
 title: "SimpleK8s-Update"
 date: 2024-01-08T20:32:02Z
-draft: true
+draft: false
 ---
 ## Description
 
@@ -58,7 +58,7 @@ $ simplek8s-update update --checksign=false
 
 The command `simplek8s-update` could be updated with new features and fixes. This subcommand will upgrade the command `simplek8s-update` itself.
 
-#### List
+### List
 
 Soon…
 
@@ -66,11 +66,11 @@ Soon…
 
 Soon…
 
-#### Purge
+### Purge
 
 Soon …
 
-#### Search
+### Search
 
 Soon…
 
