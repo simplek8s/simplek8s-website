@@ -1,4 +1,4 @@
-baseURL = ''
+baseURL = 'https://simplek8s.org'
 languageCode = 'en-us'
 title = 'SimpleK8s'
 timeout = '120s'
