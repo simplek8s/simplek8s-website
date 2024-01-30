@@ -35,27 +35,27 @@
   <div class="filter">
 
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Channel:</label>
+      <label class="col-md-2 col-form-label">Channel:</label>
       <div class="col-sm-10">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="channel" id="channelStable" checked/>
-            <label class="form-check-label" for="channelStable">🛡️ Stable</label>
+            <label class="form-check-label" for="channelStable"><div class="d-none d-sm-inline me-1">🛡️</div>Stable</label>
           </li>
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="channel" id="channelRolling"/>
-            <label class="form-check-label" for="channelRolling">🧪 Rolling</label>
+            <label class="form-check-label" for="channelRolling"><div class="d-none d-sm-inline me-1 ">🧪</div>Rolling</label>
           </li>
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="channel" id="channelDev"/>
-            <label class="form-check-label" for="channelDev">🚧 Dev</label>
+            <label class="form-check-label" for="channelDev"><div class="d-none d-sm-inline me-1">🚧</div>Dev</label>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Architecture:</label>
+      <label class="col-md-2 col-form-label">Architecture:</label>
       <div class="col-sm-10">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
@@ -64,34 +64,38 @@
           </li>
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="architecture" id="architectureRPi4">
-            <label class="form-check-label" for="architectureRPi4">Raspberry Pi 4</label>
+            <label class="form-check-label" for="architectureRPi4"><div class="d-inline d-sm-none">RPi 4</div><div class="d-none d-sm-inline">Raspberry Pi 4</div></label>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Component:</label>
+      <label class="col-md-2 col-form-label">Component:</label>
       <div class="col-sm-10">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="component" id="componentImage" checked/>
-            <label class="form-check-label" for="componentImage">💿 Image</label>
+            <label class="form-check-label" for="componentImage"><div class="d-none d-sm-inline me-1">💾</div>Image</label>
+          </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="component" id="componentISO"/>
+            <label class="form-check-label" for="componentISO"><div class="d-none d-sm-inline me-1">💿</div>ISO</label>
           </li>
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="component" id="componentKernel"/>
-            <label class="form-check-label" for="componentKernel">🐧 Kernel</label>
+            <label class="form-check-label" for="componentKernel"><div class="d-none d-sm-inline me-1">🐧</div>Kernel</label>
           </li>
           <li class="list-group-item">
             <input class="form-check-input" type="radio" name="component" id="componentInformation"/>
-            <label class="form-check-label" for="componentInformation">📝 Info</label>
+            <label class="form-check-label" for="componentInformation"><div class="d-none d-sm-inline me-1">📝</div>Info</label>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Compressed:</label>
+      <label class="col-md-2 col-form-label">Compressed:</label>
       <div class="col-sm-10">
         <ul class="list-group list-group-horizontal">
           <li class="list-group-item">
@@ -107,7 +111,7 @@
     </div>
 
     <div class="row mb-3">
-      <label class="col-sm-2 col-form-label">Show:</label>
+      <label class="col-md-2 col-form-label">Show:</label>
       <div class="col-sm-10">
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="columnChannel">
@@ -146,7 +150,7 @@
   <div class="table-responsive mb-3 shadow-sm">
     <table id="tableReleases" class="table table-bordered mb-0">
       <thead class="table-light">
-        <tr class="channelStable channelRolling channelDev archx8664 archRPi4 componentKernel componentImage componentInformation compressYes compressNo">
+        <tr class="channelStable channelRolling channelDev archx8664 archRPi4 componentKernel componentImage componentISO componentInformation compressYes compressNo">
           <th>Url</th>
           <th>Channel</th>
           <th>Distribution</th>
@@ -175,6 +179,7 @@
       {{ $classComponent := "componentNone" }}
       {{ if or (eq .component "kernel") (eq .component "efi") }}{{ $classComponent = "componentKernel" }}{{end}}
       {{ if eq .component "img" }}{{ $classComponent = "componentImage" }}{{end}}
+      {{ if eq .component "iso" }}{{ $classComponent = "componentISO" }}{{end}}
       {{ if eq .component "info.json" }}{{ $classComponent = "componentInformation" }}{{ $classCompressed = "compressNo compressYes" }}{{end}}
 
       {{- /* ignore multiples "latest" releases for same type */ -}}

@@ -65,6 +65,9 @@ div.releases:has([id="componentKernel"]:checked)
 div.releases:has([id="componentImage"]:checked)
   table#tableReleases
   tr:not(.componentImage),
+div.releases:has([id="componentISO"]:checked)
+  table#tableReleases
+  tr:not(.componentISO),
 div.releases:has([id="componentInformation"]:checked)
   table#tableReleases
   tr:not(.componentInformation) {
