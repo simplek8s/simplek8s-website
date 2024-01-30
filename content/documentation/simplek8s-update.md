@@ -9,7 +9,7 @@ The SimpleK8s-Update is a user-friendly program that help you to update your Sim
 
 The command `simplek8s-update` is located by default in `/usr/local/bin/simplek8s-update`.
 
-There are some subcommands for SimpleK8s:
+There are some subcommands for `simplek8s-update`:
 
 
 ## Subcommands
@@ -31,18 +31,18 @@ This subcommand will search the latest release from an URL (the official SimpleK
 
 There are some configurations as the following:
 
-- **``--url``**: URL from the repository where to download the files SHA256SUMS, SHA256SUMS.gpg and the releases. There are some alias as `dev`, `rolling` and `stable` for the official SimpleK8s repository URL.
+- **``--url``**: URL from the repository where to download the files `SHA256SUMS`, `SHA256SUMS.gpg` and the releases. There are some alias as `dev`, `rolling` and `stable` for the official SimpleK8s repository URL.
 - **`--version`**: The version to download. By default will be the alias `latest`.
 - **`--dry-run`**: Just do not write anything in the storage.
 - **`--preserve`**: How many releases will be preserved. Maybe you wish to boot an order version.
 
-As example, to upgrade a SimpleK8s:
+To upgrade a SimpleK8s:
 
 ```console
 $ simplek8s-update update
 ```
 
-To use a more experimental channel (there are more aliases as `dev`, `rolling` and `stable`):
+To use the most experimental channel (there are more aliases as `dev`, `rolling` and `stable`):
 
 ```console
 $ simplek8s-update update --url dev
