@@ -1,7 +1,7 @@
 ---
 title: "Update"
 date: 2024-01-09T07:59:06+01:00
-draft: true
+draft: false
 ---
 **Q: How do I update SimpleK8s?**
 
