@@ -158,6 +158,7 @@
         </tr>
       </thead>
       <tbody>
+    {{ $latests := slice }}
     {{ range $releases | collections.Reverse }}
       {{ $classChannel := "channelNone" }}
       {{ if eq .channel "stable" }}{{ $classChannel = "channelStable" }}{{ end }}
@@ -175,6 +176,14 @@
       {{ if or (eq .component "kernel") (eq .component "efi") }}{{ $classComponent = "componentKernel" }}{{end}}
       {{ if eq .component "img" }}{{ $classComponent = "componentImage" }}{{end}}
       {{ if eq .component "info.json" }}{{ $classComponent = "componentInformation" }}{{ $classCompressed = "compressNo compressYes" }}{{end}}
+
+      {{- /* ignore multiples "latest" releases for same type */ -}}
+      {{ $lastestId := (printf "%s.%s.%s.%s" $classChannel .distribution $classArch $classComponent ) }}
+      {{ if and (strings.Contains .filename ".latest.") (in $latests $lastestId) }}
+        {{ continue }}
+      {{ else }}
+        {{ $latests = $latests | append $lastestId }}
+      {{ end }}
 
       <tr class="{{ printf "%s %s %s %s" $classChannel $classArch $classComponent $classCompressed }}">
         <td>
