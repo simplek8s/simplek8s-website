@@ -73,3 +73,7 @@ div.releases:has([id="componentInformation"]:checked)
   tr:not(.componentInformation) {
   display: none;
 }
+
+div.releases table#tableReleases thead tr th {
+  background-color: var(--bs-light-bg-subtle) !important;
+}

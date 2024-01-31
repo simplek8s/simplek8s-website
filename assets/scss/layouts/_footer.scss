@@ -1,6 +1,5 @@
 footer.footer {
   @extend .py-3;
-  @extend .mt-5;
   @extend .border-top;
   @extend .text-body-secondary;
   @extend .fs-6;
@@ -8,5 +7,7 @@ footer.footer {
 
   & > p {
     @extend .container;
+    @extend .small;
+    @extend .mb-0;
   }
 }

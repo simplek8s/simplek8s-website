@@ -1,0 +1,14 @@
+body {
+    background-color: var(--bs-light-bg-subtle);
+
+    div.body {
+        background-color: var(--bs-body-bg);
+        @extend .pb-5;
+    }
+}
+
+.btnToggleTheme {
+    @extend .btn;
+    @extend .btn-sm;
+    margin-top: -0.5em;
+}

@@ -1,13 +1,17 @@
 {{ $bs := resources.Get "js/bootstrap.js" -}}
 {{ $bs := $bs | js.Build -}}
+{{ $ws := resources.Get "js/website.js" }}
+{{ $ws := $ws | js.Build -}}
 
 {{ if eq (hugo.Environment) "development" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
     <script src="{{ $bs.RelPermalink }}" defer></script>
   {{ end -}}
+  <script src="{{ $ws.RelPermalink }}" defer></script>
 {{ else -}}
   {{ $bs := $bs | minify | fingerprint "sha512" -}}
   {{ if .Site.Params.options.bootStrapJs -}}
     <script src="{{ $bs.RelPermalink }}" integrity="{{ $bs.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end -}}
+  <script src="{{ $ws.RelPermalink }}" integrity="{{ $ws.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{ end -}}
