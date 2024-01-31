@@ -7,12 +7,9 @@
 (() => {
   "use strict";
 
-  const getStoredTheme = () => localStorage.getItem("theme");
-  const setStoredTheme = (theme) => localStorage.setItem("theme", theme);
-
-  const getPreferredTheme = () => {
-    const storedTheme = getStoredTheme();
-    if (storedTheme) {
+  const getTheme = () => {
+    const storedTheme = localStorage.getItem("theme");
+    if (["light", "dark"].indexOf(storedTheme) > -1) {
       return storedTheme;
     }
 
@@ -22,32 +19,21 @@
   };
 
   const setTheme = (theme) => {
-    if (
-      theme === "auto" &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      document.documentElement.setAttribute("data-bs-theme", "dark");
-    } else {
-      document.documentElement.setAttribute("data-bs-theme", theme);
-    }
+    document.documentElement.setAttribute("data-bs-theme", theme);
+    localStorage.setItem("theme", theme);
   };
-
-  const setToggleTheme = () => {
-    var theme = getStoredTheme() === "light" ? "dark" : "light";
-    setStoredTheme(theme);
-    setTheme(theme);
-  };
-
-  setTheme(getPreferredTheme());
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", () => {
-      const storedTheme = getStoredTheme();
-      if (storedTheme !== "light" && storedTheme !== "dark") {
-        setTheme(getPreferredTheme());
-      }
+      const theme = getTheme();
+      setTheme(theme);
     });
+
+  const setToggleTheme = () => {
+    var theme = getTheme() === "light" ? "dark" : "light";
+    setTheme(theme);
+  };
 
   window.addEventListener("DOMContentLoaded", () => {
     Array.from(document.getElementsByClassName("btnToggleTheme")).forEach(
