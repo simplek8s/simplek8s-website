@@ -52,4 +52,14 @@ header.header {
       }
     }
   }
+
+  .btnToggleTheme {
+    @extend .btn;
+    @extend .btn-sm;
+    @extend .p-0;
+    .icon {
+      margin-top: -.75em;
+      font-size: 2em;
+    }
+  }
 }

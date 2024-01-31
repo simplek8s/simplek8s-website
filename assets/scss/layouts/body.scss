@@ -6,9 +6,3 @@ body {
         @extend .pb-5;
     }
 }
-
-.btnToggleTheme {
-    @extend .btn;
-    @extend .btn-sm;
-    margin-top: -0.5em;
-}
