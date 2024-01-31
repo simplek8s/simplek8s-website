@@ -1,6 +1,6 @@
-{{- if eq .Kind "404" }}
+{{- if eq .Kind "404" -}}
   <meta name="robots" content="noindex, follow" />
-{{ end -}}
+{{- end -}}
 
 {{- if .IsHome }}
   <title>
@@ -10,14 +10,13 @@
   <title>
     {{ printf "%s %s %s" .Title .Site.Params.titleSeparator .Site.Params.title }}
   </title>
-{{ end -}}
+{{- end -}}
 
 {{- with .Description }}
   <meta name="description" content="{{ . }}" />
+{{- end -}}
+{{- with .Summary | plainify }}
+  <meta name="description" content="{{ . }}" />
 {{- else }}
-  {{- with .Summary | plainify }}
-    <meta name="description" content="{{ . }}" />
-  {{- else }}
-    <meta name="description" content="{{ .Site.Params.description }}" />
-  {{ end -}}
-{{ end -}}
+  <meta name="description" content="{{ .Site.Params.description }}" />
+{{- end -}}

@@ -5,7 +5,7 @@
       Simple<span class="highlight">K8s</span>
     </a>
     <ul class="nav">
-      {{- $current := . -}}
+      {{- $current := . }}
       {{ range (sort .Site.Menus.main "Weight" "desc") -}}
         {{- $active := and (eq $current.RelPermalink "/") (eq .URL "/") -}}
         {{- $active = or $active (and (ne .URL "/") (hasPrefix $current.RelPermalink .URL)) -}}

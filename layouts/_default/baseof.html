@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Params.languageTag | default "en-US" }}">
-  {{ partial "head/head.html" . }}
+  {{- partial "head/head.html" . }}
   <body class="{{- if .IsHome -}}isHome{{- end -}}">
     <div class="body">
       {{ partial "header/header.html" . }}
