@@ -1,0 +1,9 @@
+{{- $classType := "" }}
+{{- if .IsNamedParams }}
+  {{- with .Get "type" }}{{ $classType = print "alert-" . }}{{ end }}
+{{- else }}
+  {{- with .Get 0 }}{{ $classType = print "alert-" . }}{{ end }}
+{{- end }}
+<div class="alert {{ $classType }}" role="alert">
+    {{ .Inner | markdownify }}
+</div>

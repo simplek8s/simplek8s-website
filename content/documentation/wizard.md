@@ -7,9 +7,9 @@ draft: false
 
 The SimpleK8s-Wizard is a user-friendly program that enables you to manage your Kubernetes node through a web-based UI.
 
-{{< info >}}
+{{< alert type="info" >}}
 The `Installer` section is only visible when using SimpleK8s without persistence.
-{{< /info >}}
+{{< /alert >}}
 
 To access the web UI, go to: `https://<your-node-IP>:5443`
 
@@ -49,9 +49,9 @@ By default, the SimpleK8s-Wizard is enabled. However, you can disable it using t
 
 The Installer section allows you to install SimpleK8s on a persistent storage medium, such as MVME, SSD, or HDD disk drivers.
 
-{{< warning >}}
+{{< alert type="warning" >}}
 Please note that the `Installer` does not support partition editing. Selecting a disk will result in a full wipe of the selected disk.
-{{< /warning >}}
+{{< /alert >}}
 
 The wizard will guide you through the following steps:
 

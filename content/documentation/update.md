@@ -15,9 +15,11 @@ $ simplek8s-update update
 
 Now is an opportune time to upgrade third-party programs, such as Kubernetes. You can temporarily stop these third-party programs and remove them, as they will redeployed upon the next reboot.
 
-{{< warning >}}
-Please be cautious! If you have custom third-party programs in `/usr/local/bin`, the next command will remove all of then! Alternatively you can manually remove each one.
-{{< /warning >}}
+{{< alert type="warning">}}
+__Please be cautious!__
+
+If you have custom third-party programs in `/usr/local/bin`, the next command will remove all of then! Alternatively you can manually remove each one.
+{{< /alert >}}
 
 ```console
 $ # The next command will stop all Kubernetes components

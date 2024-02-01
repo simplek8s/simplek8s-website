@@ -1,0 +1,16 @@
+.alert {
+  &.alert-info::before {
+    content: "📌 ";
+  }
+  &.alert-warning:before {
+    content: "⚠️ ";
+  }
+
+  p:first-child {
+    display: inline-block;
+  }
+
+  *:last-child {
+    @extend .mb-0;
+  }
+}

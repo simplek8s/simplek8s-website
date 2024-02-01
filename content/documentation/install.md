@@ -28,9 +28,11 @@ xdb    259:0    0    1G  0 disk
 
 Write the SimpleK8s image to the destination device.
 
-{{< warning >}}
-THIS WILL OVERWRITE THE DESTINATION DEVICE WITHOUT PROMPT. Verify twice before press ENTER.
-{{< /warning >}}
+{{< alert type="warning" >}}
+__THIS WILL OVERWRITE THE DESTINATION DEVICE WITHOUT PROMPT.__
+
+Verify twice before press ENTER.
+{{< /alert >}}
 
 ```console
 $ zstdcat simplek8s.latest.x86-64.img.zst | dd of=/dev/xdb
@@ -84,13 +86,13 @@ $ nano /mnt/simplek8s/simplek8s.yaml.example
 
 Modify the root password, ssh passphrase, storage mounts, static IP, etc. in the `simplek8s.yaml.example` file.
 
-{{< info >}}
+{{< alert type="info" >}}
 You can create a passwordHash using the next command. Press space before the command to do not write it in your shell history.
 
 ```console
 $ openssl passwd -6 "your password"
 ```
-{{< /info >}}
+{{< /alert >}}
 
 ```yaml
 users:
