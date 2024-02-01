@@ -9,8 +9,46 @@
     {{ end }}
     <article>
       <h1>{{ .Title }}</h1>
+      {{- if eq .Parent.Title "News" -}}
+        <p class="small text-muted mb-4">
+        published at {{ .Date.Format "2006-01-02" -}}
+        {{- if .Params.authors -}}
+          {{- if gt (len .Params.authors) 1 -}}
+            , by:
+            <ul>
+            {{- range .Params.authors -}}
+              <li>
+                {{- $author := . -}}
+                {{- $name := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 1 -}}
+                {{- $email := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 2 -}}
+                  {{- if $email -}}
+                    <a href="mailto:{{ $email }}">
+                      {{- $name -}}
+                    </a>
+                  {{- else -}}
+                    {{- $author -}}
+                  {{- end -}}
+              </li>
+            {{- end -}}
+            </ul>
+          {{- else -}}
+            , by{{" "}}
+            {{- $author := (index .Params.authors 0) -}}
+            {{- $name := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 1 -}}
+            {{- $email := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 2 -}}
+            {{- if $email -}}
+              <a href="mailto:{{ $email }}">
+                {{- $name -}}
+              </a>
+            {{- else -}}
+              {{ $author -}}
+            {{- end -}}
+            .
+          {{- end -}}
+        {{- end -}}
+        </p>
+      {{- end -}}
       <p>{{ .Content }}</p>
-      {{/* <footer class="text-muted">{{ .Date.Format "2006-01-02" }}</footer> */}}
     </article>
   </main>
 {{ end }}

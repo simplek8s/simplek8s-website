@@ -19,3 +19,8 @@ mediaTypes = ['.*']
     disable = true
   [privacy.youtube]
     disable = true
+
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'
+  author = 'authors'

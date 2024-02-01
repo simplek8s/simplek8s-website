@@ -1,10 +1,14 @@
 ---
 title: "Download Page Cleanups"
 date: 2024-01-30T22:37:29+01:00
+tags:
+- website
+authors:
+- José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 draft: false
 ---
 
-These days, I ([José Luis Salvador Rufo](mailto:salvador.joseluis+simplek8s@gmail.com)), have been working on enhancing the [Download](/download) page.
+These days, I have been working on enhancing the [Download](/download) page.
 
 Previously, it was just a dump of the official [SHA256SUMS](https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS), contradicting the simplicity philosophy of this distribution.
 
@@ -24,5 +28,3 @@ The second point posed more complexity due to the third requirement (no JavaScri
 The last requirement added an element of entertainment, at least for now. Perhaps in the future, with more architectures, I may change input radios to a vertical layout. On very small screens, I've hidden a few icons and shortened some texts. The column visibility selector was a nice feature to reduce the columns glut.
 
 I genuinely believe that I've made significant improvements to the SimpleK8s website this week. 👍
-
-[José Luis Salvador Rufo](mailto:salvador.joseluis+simplek8s@gmail.com).
