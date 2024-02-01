@@ -1,11 +1,11 @@
 ---
 title: "2nd Week, Look & Feel"
-date: 2024-02-01T15:32:20+01:00
+date: 2024-02-04T15:32:20+01:00
 tags:
 - website
 authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
-draft: true
+draft: false
 ---
 
 > "A project without good communication does not exist."
