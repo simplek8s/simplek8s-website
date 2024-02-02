@@ -19,7 +19,7 @@
       {{- /* -- Ranges through content/posts/*.md */ -}}
       {{- range .Pages.ByWeight }}
         <li>
-          {{ if $page.Params.list_show_date }}<span class="text-muted small">({{ .Date.Format "2006-01-02" }})</span> — {{ end }}<a href="{{ .Permalink }}">{{ .Title }}</a>
+          {{ if $page.Params.show_date }}<span class="text-muted small">({{ .Date.Format "2006-01-02" }})</span> — {{ end }}<a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
       {{- end }}
     </ul>

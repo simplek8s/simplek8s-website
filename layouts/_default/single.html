@@ -9,12 +9,21 @@
     {{ end }}
     <article>
       <h1>{{ .Title }}</h1>
-      {{- if eq .Parent.Title "News" -}}
+      {{- if or .Params.show_date .Params.show_authors -}}
         <p class="small text-muted mb-4">
-        published at {{ .Date.Format "2006-01-02" -}}
-        {{- if .Params.authors -}}
+
+        {{- if .Params.show_date -}}
+          published at {{ .Date.Format "2006-01-02" -}}
+          {{- if .Params.authors -}}
+            {{- ", " -}}
+          {{- else -}}
+            {{- "." -}}
+          {{- end -}}
+        {{- end -}}
+
+        {{- if and .Params.show_authors .Params.authors -}}
           {{- if gt (len .Params.authors) 1 -}}
-            , by:
+            by:
             <ul>
             {{- range .Params.authors -}}
               <li>
@@ -32,7 +41,7 @@
             {{- end -}}
             </ul>
           {{- else -}}
-            , by{{" "}}
+            by{{" "}}
             {{- $author := (index .Params.authors 0) -}}
             {{- $name := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 1 -}}
             {{- $email := index (index (findRESubmatch `(?s)(.+)\s+(\<.*\>)` $author) 0) 2 -}}
