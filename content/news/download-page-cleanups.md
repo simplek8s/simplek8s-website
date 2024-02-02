@@ -23,7 +23,7 @@ With these requirements in mind, I spent a few hours these days to enhance the u
 
 Addressing the first point was straightforward. The initial iteration involved organizing the SHA256SUMS into an HTML table, breaking down each token, such as channel, version, architecture, component, compression, and hash.
 
-The second point posed more complexity due to the third requirement (no JavaScript support). I opted to useCSS selectors like `:has()` and `:not()` to hide specific rows from the releases table. When drawing each row, I added a few classes. Using CSS selectors, I could hide different rows and columns without Javascript. 🙌
+The second point posed more complexity due to the third requirement (no JavaScript support). I opted to use CSS selectors like `:has()` and `:not()` to hide specific rows from the releases table. When drawing each row, I added a few classes. Using CSS selectors, I could hide different rows and columns without Javascript. 🙌
 
 The last requirement added an element of entertainment, at least for now. Perhaps in the future, with more architectures, I may change input radios to a vertical layout. On very small screens, I've hidden a few icons and shortened some texts. The column visibility selector was a nice feature to reduce the columns glut.
 
