@@ -20,4 +20,6 @@ This time, I've introduced several improvements:
 
 - __News section, look & feel__: The appearance of the News section has been upgraded for better readability. Now, it includes details such as the author's name, publication date, and some stylistic enhancements to enhance the overall reading experience.
 
+- __Quotes__: As you can see in this post, I've styled block quotes. I share the first quote from my own experience, a sort of adaptation for project management: *"If we don't communicate it, it doesn't exist."*.
+
 See you soon!
