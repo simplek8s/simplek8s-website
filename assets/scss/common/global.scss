@@ -20,3 +20,7 @@ blockquote {
     @extend .pt-1;
     @extend .pb-1;
 }
+
+ul li ul {
+    @extend .mb-3;
+}

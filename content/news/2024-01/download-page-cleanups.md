@@ -1,11 +1,12 @@
 ---
 title: "Download Page Cleanups"
 date: 2024-01-30T22:37:29+01:00
+draft: false
+
 tags:
 - website
 authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
-draft: false
 ---
 
 These days, I have been working on enhancing the [Download](/download) page.

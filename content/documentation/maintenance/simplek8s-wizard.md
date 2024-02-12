@@ -2,7 +2,6 @@
 title: "SimpleK8s-Wizard"
 date: 2023-07-17T21:49:29Z
 draft: false
-
 aliases:
 - /documentation/wizard
 ---

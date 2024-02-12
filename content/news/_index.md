@@ -6,4 +6,5 @@ draft: false
 cascade:
   show_authors: true
   show_date: true
+  order_by_date: true
 ---
