@@ -15,7 +15,7 @@ Another week of enhancements for SimpleK8s website!
 
 This time, I've introduced several improvements:
 
-- __Color Mode__: Now you can seamlessly switch between light and dark modes. I've optimized this by replacing specific colors with Bootstrap color variables. Changing your theme is as easy as modifying <html data-bs-theme="dark"> or <html data-bs-theme="light">. As an additional perk, your preference is saved automatically, and it also respects your browser settings.
+- __Color Mode__: Now you can seamlessly switch between light and dark modes. I've optimized this by replacing specific colors with Bootstrap color variables. Changing your theme is as easy as modifying `<html data-bs-theme="dark">` or `<html data-bs-theme="light">`. As an additional perk, your preference is saved automatically, and it also respects your browser settings.
 
 - __Replace Info and Warning by Alert__: Simplified the code to align with Bootstrap conventions for a cleaner user experience.
 
