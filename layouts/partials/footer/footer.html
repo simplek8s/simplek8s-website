@@ -1,6 +1,8 @@
+{{ $boat := resources.Get "img/boat.svg" -}}
+{{ $boat = $boat | minify | fingerprint "sha512" -}}
 <footer class="footer">
   <div class="boat">
-    <img class="boat" src="{{ "/boat.svg" | relURL }}">
+    <img class="boat" src="{{ $boat.RelPermalink }}" alt="">
   </div>
   <div class="content">
     <p>
