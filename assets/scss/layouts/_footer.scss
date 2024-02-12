@@ -1,13 +1,31 @@
 footer.footer {
-  @extend .py-3;
-  @extend .border-top;
-  @extend .text-body-secondary;
+  color: var(--bs-light);
   @extend .fs-6;
   @extend .text-center;
+  @extend .pb-3;
 
-  & > p {
+  p {
     @extend .container;
     @extend .small;
     @extend .mb-0;
+  }
+
+  a {
+    color: var(--bs-light);
+  }
+
+  div.boat {
+    background-image: linear-gradient(
+      to bottom,
+      var(--bs-body-bg),
+      var(--bs-body-bg) 60%,
+      #326ce5 40%,
+      #326ce5
+    );
+    height: 5rem;
+
+    img.boat {
+      height: 5rem;
+    }
   }
 }
