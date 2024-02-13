@@ -4,7 +4,8 @@ date: 2024-02-13T20:14:30+01:00
 draft: false
 
 tags:
-- website
+- simplek8s-update
+- maintenance
 authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
