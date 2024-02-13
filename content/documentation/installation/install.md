@@ -87,10 +87,10 @@ $ nano /mnt/simplek8s/simplek8s.yaml.example
 Modify the root password, ssh passphrase, storage mounts, static IP, etc. in the `simplek8s.yaml.example` file.
 
 {{< alert type="info" >}}
-You can create a passwordHash using the next command. Press space before the command to do not write it in your shell history.
+You can create a passwordHash using the next command:
 
 ```console
-$ openssl passwd -6 "your password"
+$ openssl passwd -6
 ```
 {{< /alert >}}
 
