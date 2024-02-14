@@ -13,12 +13,11 @@ ol, ul, dl {
 blockquote {
     @extend .blockquote;
     @extend .bg-secondary-subtle;
+    @extend .border-dark-subtle;
     @extend .border-start;
     @extend .border-5;
-    @extend .ps-3;
-    @extend .pe-3;
-    @extend .pt-1;
-    @extend .pb-1;
+    @extend .px-3;
+    @extend .py-1;
 }
 
 ul li ul {
