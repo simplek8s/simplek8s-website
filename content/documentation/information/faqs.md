@@ -2,6 +2,8 @@
 title: "Frequently Asked Questions (FAQs)"
 date: 2023-07-10T08:07:00+02:00
 draft: false
+aliases:
+- /documentation/faqs
 ---
 **Q: What is the purpose of this new Linux distribution?**
 

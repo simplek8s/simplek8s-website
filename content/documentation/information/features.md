@@ -3,6 +3,8 @@ title: "Features"
 date: 2023-07-10T01:51:00+02:00
 draft: false
 weight: 100
+aliases:
+- /documentation/features
 ---
 
 - 🧩 **Simplified**: Effortlessly create a production-ready Kubernetes cluster using a web UI.
