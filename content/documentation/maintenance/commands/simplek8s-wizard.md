@@ -1,9 +1,10 @@
 ---
-title: "SimpleK8s-Wizard"
+title: "simplek8s-wizard"
 date: 2023-07-17T21:49:29Z
 draft: false
 aliases:
 - /documentation/wizard
+- /documentation/maintenance/simplek8s-wizard
 ---
 ## Description
 

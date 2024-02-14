@@ -1,7 +1,9 @@
 ---
-title: "SimpleK8s-Update"
+title: "simplek8s-update"
 date: 2024-01-08T20:32:02Z
 draft: false
+aliases:
+- /documentation/maintenance/simplek8s-update
 ---
 ## Description
 
