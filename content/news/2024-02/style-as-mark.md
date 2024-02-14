@@ -9,6 +9,8 @@ authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
 
-This week, I incorporated an animated boat as a footer split, serving as the second option for the SimpleK8s logo. I created it using Inkscape and a pen tablet; my first time using animated SVGs. The concept aims to depict SimpleK8s as a straightforward tool—a modest vessel aiding you in reaching your destination without unnecessary embellishments. All these elements are tied to the nautical context of Kubernetes. 🛥️
+I incorporated an animated boat as a footer split. This idea was the second option for the SimpleK8s logo. Crafted with Inkscape and a pen tablet, this was my first time using animated SVGs. The underlying concept is to portray SimpleK8s as a straightforward tool—a humble vessel aiding you to your destination without unnecessary embellishments. This visual theme aligns with the nautical context of Kubernetes. 🛥️
 
-Another thing. Now we have categories, for Documentations and News. 📚
+In addition, I've implemented a categorization system for better organization. Now, you can easily navigate between Documentations and News sections. 📚
+
+Lastly, I've reorganized the documentation section by creating a dedicated space for commands, providing a more structured and user-friendly experience.
