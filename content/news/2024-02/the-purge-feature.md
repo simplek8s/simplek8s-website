@@ -19,7 +19,7 @@ With this update, you can now clean up old releases from the boot partition base
 Don't forget to update the [simplek8s-update](/documentation/commands/simplek8s-update) command as follows:
 
 ```console
-$ simplek8s-update su
+$ simplek8s-update selfupdate
 
 Downloading SHA256SUMS ...
 Downloading simplek8s-update.latest.arm64 (2.5 MB) ...
@@ -33,7 +33,7 @@ Saving as "/usr/local/bin/simplek8s-update" (2.5 MB) ...
 The next command will remove old releases; by default, preserving the default kernel, 5 releases, and a maximum of 75% used space.
 
 ```console
-$ simplek8s-update p
+$ simplek8s-update purge
 
 Mounting boot device ...
 There are 4 installed releases. Preserving a least 5 ...
@@ -43,6 +43,6 @@ Device: /dev/disk/by-label/boot, size: 264.3 MB, used: 191.2 MB (72%).
 Unmounting boot device ...
 ```
 
-The idea is to run `purge` after unattended upgrades.
+The idea is to run `simplek8s-update purge` after upgrade.
 
 Let's continue making progress, one step at a time!
