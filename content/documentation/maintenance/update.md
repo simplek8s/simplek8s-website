@@ -6,7 +6,7 @@ draft: false
 **Q: How do I update SimpleK8s?**
 
 A: SimpleK8s is delivered as a single file, typically located in `/boot/simplek8s/`. To update to a new version, you can directly download it from the [official download page](https://simplek8s.org/download/).
-A more convenient alternative is to use the `simplek8s-update` command for upgrading SimpleK8s:
+A more convenient alternative is to use the [simplek8s-update](/documentation/commands/simplek8s-update) command for upgrading SimpleK8s:
 
 ```console
 $ # By default, simplek8s-update will upgrades from the stable channel.

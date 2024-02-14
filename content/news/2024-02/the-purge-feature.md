@@ -10,13 +10,13 @@ authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
 
-I am excited to announce the latest improvement to the `simplek8s-update` component.
+I am excited to announce the latest improvement to the [simplek8s-update](/documentation/commands/simplek8s-update) component.
 
-Previously incomplete, the "purge" subcommand in `simplek8s-update` is now fully functional!
+Previously incomplete, the "purge" subcommand in [simplek8s-update](/documentation/commands/simplek8s-update) is now fully functional!
 
 With this update, you can now clean up old releases from the boot partition based on either the usage space percentage or the desired number of releases to preserve.
 
-Don't forget to update the `simplek8s-update` command as follows:
+Don't forget to update the [simplek8s-update](/documentation/commands/simplek8s-update) command as follows:
 
 ```console
 $ simplek8s-update su
