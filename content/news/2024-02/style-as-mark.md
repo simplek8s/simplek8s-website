@@ -1,7 +1,7 @@
 ---
 title: "Style as Mark"
 date: 2024-02-17T23:57:08Z
-draft: true
+draft: false
 
 tags:
 - website
@@ -13,6 +13,6 @@ I incorporated an animated boat as a footer split. This idea was the second opti
 
 In addition, I've implemented a categorization system for better organization. Now, you can easily navigate between Documentations and News sections. 📚
 
-Fixed a minor style problem about the blockquotes border color on light theme.
+Fixed a minor style problem about the blockquotes border color on light theme. 🎨
 
-Lastly, I've reorganized the documentation section by creating a dedicated space for commands, providing a more structured and user-friendly experience.
+Lastly, I've reorganized the documentation section by creating a dedicated space for commands, providing a more structured and user-friendly experience. 📒
