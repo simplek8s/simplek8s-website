@@ -49,6 +49,11 @@ div.releases:has([id="architectureRPi4"]:checked)
   tr:not(.archRPi4) {
   display: none;
 }
+div.releases:has([id="architectureRPi5"]:checked)
+  table#tableReleases
+  tr:not(.archRPi5) {
+  display: none;
+}
 
 div.releases:has([id="compressYes"]:checked)
   table#tableReleases

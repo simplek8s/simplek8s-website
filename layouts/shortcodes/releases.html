@@ -66,6 +66,10 @@
             <input class="form-check-input" type="radio" name="architecture" id="architectureRPi4">
             <label class="form-check-label" for="architectureRPi4"><div class="d-inline d-sm-none">RPi 4</div><div class="d-none d-sm-inline">Raspberry Pi 4</div></label>
           </li>
+          <li class="list-group-item">
+            <input class="form-check-input" type="radio" name="architecture" id="architectureRPi5">
+            <label class="form-check-label" for="architectureRPi5"><div class="d-inline d-sm-none">RPi 5</div><div class="d-none d-sm-inline">Raspberry Pi 5</div></label>
+          </li>
         </ul>
       </div>
     </div>
@@ -150,7 +154,7 @@
   <div class="table-responsive mb-3 shadow-sm">
     <table id="tableReleases" class="table table-bordered mb-0">
       <thead>
-        <tr class="channelStable channelRolling channelDev archx8664 archRPi4 componentKernel componentImage componentISO componentInformation compressYes compressNo">
+        <tr class="channelStable channelRolling channelDev archx8664 archRPi4 archRPi5 componentKernel componentImage componentISO componentInformation compressYes compressNo">
           <th>Url</th>
           <th>Channel</th>
           <th>Distribution</th>
@@ -171,6 +175,7 @@
 
       {{ $classArch := "archNone"}}
       {{ if or (eq .architecture "arm64") (eq .architecture "rpi4") }}{{ $classArch = "archRPi4" }}{{ end }}
+      {{ if eq .architecture "rpi5" }}{{ $classArch = "archRPi5" }}{{ end }}
       {{ if eq .architecture "x86-64" }}{{ $classArch = "archx8664" }}{{ end }}
 
       {{ $classCompressed := "compressNo" }}
