@@ -230,9 +230,8 @@
       You can check the PGP signature as following:
     </div>
     <div class="col-12 highlight">
-      <pre><code class="language-console" data-lang="console">$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS -O
-$ curl https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS.gpg -O
-$ gpg --verify SHA256SUMS.gpg SHA256SUMS</code></pre>
+      <pre><code class="language-console" data-lang="console">$ gpg --keyserver hkps://keys.openpgp.org/ --receive-keys D611CE5493895E7CDC9A9ED654A7FAF642B114A3
+$ gpg --verify &lt;(curl --silent https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS.gpg) &lt;(curl --silent https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS)</code></pre>
     </div>
   </div>
 
