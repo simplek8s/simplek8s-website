@@ -1,5 +1,5 @@
 {{- if eq .Kind "404" -}}
-  <meta name="robots" content="noindex, follow" />
+  <meta name="robots" content="noindex, follow">
 {{- end -}}
 
 {{- if .IsHome }}
@@ -13,10 +13,10 @@
 {{- end -}}
 
 {{- with .Description }}
-  <meta name="description" content="{{ . }}" />
+  <meta name="description" content="{{ . }}">
 {{- end -}}
 {{- with .Summary | plainify }}
-  <meta name="description" content="{{ . }}" />
+  <meta name="description" content="{{ . }}">
 {{- else }}
-  <meta name="description" content="{{ .Site.Params.description }}" />
+  <meta name="description" content="{{ .Site.Params.description }}">
 {{- end -}}
