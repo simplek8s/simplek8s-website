@@ -48,7 +48,7 @@ However, this means that some third-party tools and configurations will also be 
 - Control plane load balancers (a few CP might have lower versions than kubeadm during the upgrade)
 - Requires an experimental feature gate [`ControlPlaneKubeletLocalMode`](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#feature-gates). Normally, this feature is not required until it's GA. Now, it seems that alpha features can be released without sufficient notice (🫣).
 
-I'm not comfortable with this approach, but I acknowledge that the importance of non-surprise upgrades in production environments cannot be ignored. Alpha features should never be required for anyone; everyone has limited time to understand and learn about Kubernetes commits and issue messages.
+I'm not comfortable with this approach. Alpha features should never be required for anyone.
 
 
 ## The Official Way to Upgrade a Kubeadm Cluster
