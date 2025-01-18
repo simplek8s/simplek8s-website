@@ -19,21 +19,21 @@ configuration file.
 
 Follow these steps to upgrade Containerd:
 
-1. Ensure you are using at least SimpleK8s version **202501160115**,
+1. Ensure you are using at least SimpleK8s version **202501171928**,
 [download it here](/download).
 2. Stop the Containerd service:
     ```sh
     systemctl stop containerd
     ```
-3. Remove the old Containerd binary:
+3. Restore Containerd binary from factory:
     ```sh
-    rm /usr/local/bin/containerd
+    cp /usr/share/factory/usr/local/bin/containerd /usr/local/bin/containerd
     ```
-2. Delete the deprecated configuration file:
+4. Delete the deprecated configuration file:
     ```sh
     rm /etc/containerd/config.toml
     ```
-4. Restart the Containerd service. The configuration file
+5. Restart the Containerd service. The configuration file
 (`/etc/containerd/config.toml`) will be recreated automatically.
     ```sh
     systemctl start containerd
