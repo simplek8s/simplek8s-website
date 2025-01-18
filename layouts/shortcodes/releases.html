@@ -4,18 +4,18 @@
 {{ range $channel, $url := $channels }}
   {{ $data := "" }}
   {{ $cacheKey := print $url (now.Format "2006-01-02 03 PM") }}
-  {{ with resources.GetRemote $url (dict "key" $cacheKey) }}
+  {{ with try (resources.GetRemote $url (dict "key" $cacheKey)) }}
     {{ with .Err }}
       {{ errorf "%s" . }}
-    {{ else }}
-      {{ $data = . }}
+    {{ else with .Value }}
+      {{ $data = .Content }}
     {{ end }}
   {{ else }}
     {{ errorf "Unable to get remote resource %q" $url }}
   {{ end }}
 
   {{ $regex := `(?m)^(?P<hash>[a-fA-F0-9]{64})\s+\*?(?P<distribution>[-_\w]+)\.(?P<version>(?:[-_\w]+)|(?:\d+\.\d+\.\d+)+)\.(?P<architecture>[-_\w]+)\.(?P<component>efi|kernel|img|info.json|)(?:\.(?P<compression>zst|xz))?$` }}
-  {{ with $matches := findRESubmatch $regex $data.Content }}
+  {{ with $matches := findRESubmatch $regex $data }}
     {{ range $matches }}
       {{ $hash := index . 1 }}
       {{ $distribution := index . 2 }}
