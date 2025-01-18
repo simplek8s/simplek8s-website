@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM hugomods/hugo:exts AS builder_base
+FROM --platform=$BUILDPLATFORM hugomods/hugo:node AS builder_base
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci
