@@ -3,14 +3,14 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-FROM --platform=$BUILDPLATFORM builder_base as builder
+FROM --platform=$BUILDPLATFORM builder_base AS builder
 COPY . ./
 ARG CACHEBUST
 RUN echo "$CACHEBUST"
 RUN --mount=type=cache,target=/tmp/hugo_cache \
     hugo --minify --environment production
 
-FROM nginx:latest as site
+FROM nginx:latest AS site
 COPY <<EOF /etc/nginx/conf.d/privacy.conf
 server_tokens off;
 EOF
