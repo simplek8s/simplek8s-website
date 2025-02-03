@@ -13,7 +13,7 @@ Menus:
       URL: /news/
       Weight: 70
     - Name: Code
-      URL: https://git.simplek8s.org
+      URL: https://github.com/simplek8s
       Weight: 60
 
 Params:
