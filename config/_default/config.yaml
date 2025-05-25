@@ -1,18 +1,18 @@
 Menus:
   main:
-    - Name: Home
+    - Name: 🏠 Home
       URL: /
       Weight: 100
-    - Name: Download
+    - Name: 📦 Download
       URL: /download/
       Weight: 90
-    - Name: Documentation
+    - Name: 📚 Documentation
       URL: /documentation/
       Weight: 80
-    - Name: News
+    - Name: 📰 News
       URL: /news/
       Weight: 70
-    - Name: Code
+    - Name: 🤝 Code
       URL: https://github.com/simplek8s
       Weight: 60
 
