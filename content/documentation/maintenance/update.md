@@ -32,7 +32,7 @@ $ stop-k8s
 $ # Third-party files will be restored from factory on reboot
 $ rm /usr/local/bin/* /usr/local/sbin/runc /opt/cni/bin/*
 
-# Reboot your system to activate the new version:
+$ # Reboot your system to activate the new version:
 $ reboot
 ```
 
