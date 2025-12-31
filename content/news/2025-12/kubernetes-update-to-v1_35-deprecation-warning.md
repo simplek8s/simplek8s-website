@@ -34,5 +34,6 @@ Normally, the kubelet service is restarted automatically. If it is not, you can
 restart it manually:
 
 ```sh
+systemctl reset-failed kubelet
 systemctl restart kubelet
 ```
