@@ -5,6 +5,7 @@ draft: false
 
 tags:
   - updates
+  - kubernetes
   - simplek8s-controller
 authors:
   - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
