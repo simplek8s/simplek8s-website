@@ -4,16 +4,9 @@ date: 2024-01-30T20:22:58+01:00
 draft: false
 ---
 
-## Without preserving previous data
+## 1. Dump SimpleK8s image into your disk
 
-Download the latest SimpleK8s image for your platform.
-The URL can be found in the [Download]({{< ref "/download" >}}) page.
-
-```console
-$ curl -O https://dl.simplek8s.org/simplek8s/stable/simplek8s.latest.x86-64.img.zst
-```
-
-List all devices in your system to identify the destination device for SimpleK8s.
+List all the block devices to identify the destination device for SimpleK8s.
 
 ```console
 $ lsblk
@@ -26,7 +19,7 @@ xda    259:0    0  1.8T  0 disk
 xdb    259:0    0    1G  0 disk
 ```
 
-Write the SimpleK8s image to the destination device.
+Write the SimpleK8s image to the destination device:
 
 {{< alert type="warning" >}}
 __THIS WILL OVERWRITE THE DESTINATION DEVICE WITHOUT PROMPT.__
@@ -35,17 +28,22 @@ Verify twice before press ENTER.
 {{< /alert >}}
 
 ```console
-$ zstdcat simplek8s.latest.x86-64.img.zst | dd of=/dev/xdb
+# SimpleK8s images for others platforms can be found in {{< ref "/download" >}}
+
+$ curl https://dl.simplek8s.org/simplek8s/stable/simplek8s.latest.x86-64.img.zst | zstdcat | dd of=/dev/xdb
 ```
 
-Create a persistent `/var` partition on the device:
+## 2. Data persistance
+
+To create a persistent `/var` partition on the device:
 
 1. Execute `fdisk /dev/xdb`.
 2. Press `n` and Enter, to create a new partition.
-3. Press Enter, to accept default partition number.
-4. Press Enter, to accept default first sector.
-5. Press Enter, to accept default last sector.
-6. Press `w` and Enter, to save all changes.
+3. Press `p` and Enter, to create a primary partition.
+4. Press Enter, to accept default partition number.
+5. Press Enter, to accept default first sector.
+6. Press Enter, to accept default last sector.
+7. Press `w` and Enter, to save all changes.
 
 ```console
 $ fdisk /dev/xdb
@@ -54,19 +52,18 @@ Welcome to fdisk (util-linux 2.39.3).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 
-The backup GPT table is not on the end of the device. This problem will be corrected by write.
-A hybrid GPT was detected. You have to sync the hybrid MBR manually (expert command 'M').
-
 Command (m for help): n
-Partition number (2-128, default 2):
-First sector (1050624-2097118, default 1050624):
-Last sector, +/-sectors or +/-size{K,M,G,T,P} (1050624-2097118, default 2095103):
+Partition type
+   p   primary (1 primary, 0 extended, 3 free)
+   e   extended (container for logical partitions)
+Select (default p): p
+Partition number (2-4, default 2):
+First sector (1050624-2097151, default 1050624):
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (1050624-2097151, default 2097151):
 
-Created a new partition 2 of type 'Linux filesystem' and of size 510 MiB.
+Created a new partition 2 of type 'Linux' and of size 510 MiB.
 
 Command (m for help): w
-The device contains hybrid MBR -- writing GPT only.
-
 The partition table has been altered.
 Syncing disks.
 ```
@@ -118,6 +115,18 @@ If using EFI to boot your system, create a new boot entry.
 ```console
 $ efibootmgr -c -d /dev/xdb -p 1 -L SimpleK8s -l '\EFI\BOOT\BOOTX64.EFI'
 ```
+
+## 3. Secure Boot
+
+With Secure Boot disabled, or when booting in BIOS mode, the system boots directly and there is nothing else to do.
+
+With Secure Boot enabled, enroll the SimpleK8s key once per machine:
+
+1. Boot the new device. In the GRUB menu, select `Enroll MOK key (first boot with Secure Boot)`.
+2. In MokManager, select `Enroll key from disk`, choose the disk, and open `EFI/BOOT/MOK.cer`.
+3. Check that the key details belong to SimpleK8s, select `Continue`, answer `Yes` to `Enroll the key(s)?`, and select `Reboot`.
+
+Done. Later boots, including future SimpleK8s kernel upgrades, work unattended without repeating this step.
 
 __Done!__
 Reboot your system and boot from your new device.

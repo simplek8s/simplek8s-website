@@ -43,7 +43,7 @@ A: SimpleK8s does not include any desktop environments. You can use the TTY cons
 
 **Q. Can I dual-boot this Linux distribution with another operating system?**
 
-A: Yes, you can dual-boot SimpleK8s with another operating system. SimpleK8s is distributed as one file that can be booted using any BIOS or UEFI boot manager. We distribute a raw storage image too that includes the SimpleK8s kernel image, Syslinux as boot manager (BIOS and UEFI), and a Microsoft-signed Preloader for secure boot.
+A: Yes, you can dual-boot SimpleK8s with another operating system. SimpleK8s is distributed as one file that can be booted using any BIOS or UEFI boot manager. We distribute a raw storage image too that includes the SimpleK8s kernel image, GRUB as boot manager (BIOS and UEFI), and a Microsoft-signed shim for secure boot.
 
 
 **Q: What package manager does this Linux distribution use?**
