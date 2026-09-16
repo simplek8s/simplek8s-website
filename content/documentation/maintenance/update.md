@@ -8,12 +8,39 @@ draft: false
 
 SimpleK8s is delivered as a single file, typically located in `/boot/simplek8s/`. To update to a new version, you can directly download it from the [official download page](https://simplek8s.org/download/).
 
-A more convenient alternative is to use the [simplek8s-update](/documentation/commands/simplek8s-update) command for upgrading SimpleK8s:
+There are two supported ways to manage updates.
+
+## Option A — one node, by hand
+
+Use [simplek8sctl](/documentation/commands/simplek8sctl) on the node
+itself (as root). It fetches the signed release index, stages the
+kernel you ask for, and re-points the bootloader — the running kernel
+is never touched until you reboot:
 
 ```console
-$ # By default, simplek8s-update will upgrades from the stable channel.
-$ simplek8s-update update
+$ # Newest release from the stable channel:
+$ simplek8sctl update
+staged 202609161935
+default: /simplek8s/simplek8s.202609161935.x86-64.efi
+purged: []
+
+$ # Reboot into it when ready:
+$ reboot
 ```
+
+Check first what would happen (`simplek8sctl check`, `simplek8sctl
+update --dry-run`), keep old kernels with `--preserve`, and roll back
+with `simplek8sctl boot set <older-ts>` + reboot. The legacy
+[simplek8s-update](/documentation/commands/simplek8s-update) command
+still works but is superseded.
+
+## Option B — the whole cluster, automated
+
+Deploy the [SimpleK8s Controller](/documentation/maintenance/controller):
+each node stages verified releases on schedule and reboots into them
+only inside your maintenance windows — or only when you say so via
+the reboot API. Rollback is one annotation edit
+(`simplek8s.org/next-kernel` back to a preserved version) plus reboot.
 
 ## Upgrade third-party programs
 

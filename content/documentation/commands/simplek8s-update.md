@@ -9,6 +9,14 @@ aliases:
 
 The SimpleK8s-Update is a user-friendly program that help you to update your SimpleK8s node.
 
+{{< alert type="warning" >}}
+Legacy: `simplek8s-update` is superseded by
+[simplek8sctl](/documentation/commands/simplek8sctl), which shares
+its verified core with the Controller. The old binary keeps working,
+but there is no flag-compatibility promise — prefer `simplek8sctl`
+for new installs.
+{{< /alert >}}
+
 The command `simplek8s-update` is located by default in `/usr/local/bin/simplek8s-update`.
 
 There are some subcommands for `simplek8s-update`:
