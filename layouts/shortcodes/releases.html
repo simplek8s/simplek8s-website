@@ -14,7 +14,7 @@
     {{ errorf "Unable to get remote resource %q" $url }}
   {{ end }}
 
-  {{ $regex := `(?m)^(?P<hash>[a-fA-F0-9]{64})\s+\*?(?P<distribution>[-_\w]+)\.(?P<version>(?:[-_\w]+)|(?:\d+\.\d+\.\d+)+)\.(?P<architecture>[-_\w]+)\.(?P<component>efi|kernel|img|info.json|)(?:\.(?P<compression>zst|xz))?$` }}
+  {{ $regex := `(?m)^(?P<hash>[a-fA-F0-9]{64})\s+\*?(?P<distribution>[-_\w]+)\.(?P<version>(?:[-_\w]+)|(?:\d+\.\d+\.\d+)+)\.(?P<architecture>[-_\w]+)\.(?P<component>efi|iso|kernel|img|info.json|)(?:\.(?P<compression>zst|xz))?$` }}
   {{ with $matches := findRESubmatch $regex $data }}
     {{ range $matches }}
       {{ $hash := index . 1 }}
