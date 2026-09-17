@@ -127,6 +127,7 @@ With Secure Boot enabled, enroll the SimpleK8s key once per machine:
 3. Check that the key details belong to SimpleK8s, select `Continue`, answer `Yes` to `Enroll the key(s)?`, and select `Reboot`.
 
 Done. Later boots, including future SimpleK8s kernel upgrades, work unattended without repeating this step.
+Background and notes: [Secure Boot](/documentation/installation/secure-boot/).
 
 __Done!__
 Reboot your system and boot from your new device.
