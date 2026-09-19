@@ -1,25 +1,31 @@
-ol, ul, dl {
-    margin-bottom: 2rem;
+ol,
+ul,
+dl {
+  margin-bottom: 1rem;
+
+  li ul {
+    @extend .mb-3;
+  }
 }
 
 .highlight pre {
-    padding: 0.5em;
-    border-radius: 0.5em;
-    color:#f8f8f2;
-    background-color:#272822;
-    tab-size:4;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  color: #f8f8f2;
+  background-color: #272822;
+  tab-size: 4;
 }
 
 blockquote {
-    @extend .blockquote;
-    @extend .bg-secondary-subtle;
-    @extend .border-dark-subtle;
-    @extend .border-start;
-    @extend .border-5;
-    @extend .px-3;
-    @extend .py-1;
+  @extend .blockquote;
+  @extend .bg-secondary-subtle;
+  @extend .border-dark-subtle;
+  @extend .border-start;
+  @extend .border-5;
+  @extend .px-3;
+  @extend .py-1;
 }
 
-ul li ul {
-    @extend .mb-3;
+table {
+  margin-bottom: 1rem;
 }
