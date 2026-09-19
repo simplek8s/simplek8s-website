@@ -30,7 +30,7 @@ $ reboot
 
 Check first what would happen (`nodectl check`, `nodectl
 update --dry-run`), keep old kernels with `--preserve`, and roll back
-with `nodectl boot set <older-ts>` + reboot. The legacy
+with `nodectl boot <older-ts>` + reboot. The legacy
 [simplek8s-update](/documentation/commands/simplek8s-update) command
 still works but is superseded.
 

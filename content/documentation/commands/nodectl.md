@@ -137,8 +137,8 @@ $ nodectl boot
 bootloader: grub
 default: 202609161303
 staged:
-  simplek8s.202609121031.x86-64.efi
-  simplek8s.202609161303.x86-64.efi
+  202609121031
+  202609161303
 
 $ nodectl boot 202609121031
 default: 202609161303 -> 202609121031
