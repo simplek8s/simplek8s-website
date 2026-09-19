@@ -49,6 +49,10 @@ remote-newest: 202609161935
 verdict: update available 202609161935
 ```
 
+The verdict is `up-to-date`, `update available <ts>`, or `reboot
+to apply <ts>` — the last one means the release is already staged
+and only the reboot is missing.
+
 `--verbose` also lists every remote release of the flavor, every
 staged file, and the keyring and URL used.
 
@@ -67,7 +71,7 @@ the Controller).
 ```console
 $ nodectl update --url dev 202609121031
 staged 202609121031
-default: /simplek8s/simplek8s.202609121031.x86-64.efi
+default: 202609121031
 purged: []
 ```
 
@@ -98,11 +102,14 @@ default. Read-only.
 $ nodectl list
 running: 202609161303
 bootloader: grub
-default: /simplek8s/simplek8s.202609161303.x86-64.efi
+default: 202609161303
 staged:
   202609121031
   202609161303
 ```
+
+The default shows the release `ts`; a foreign or undetectable
+default is shown raw so anomalies stay visible.
 
 ### Purge
 
@@ -128,13 +135,13 @@ partition.
 ```console
 $ nodectl boot
 bootloader: grub
-default: /simplek8s/simplek8s.202609161303.x86-64.efi
+default: 202609161303
 staged:
   simplek8s.202609121031.x86-64.efi
   simplek8s.202609161303.x86-64.efi
 
 $ nodectl boot 202609121031
-default: /simplek8s/simplek8s.202609161303.x86-64.efi -> /simplek8s/simplek8s.202609121031.x86-64.efi
+default: 202609161303 -> 202609121031
 ```
 
 ### Version
