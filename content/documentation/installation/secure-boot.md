@@ -31,7 +31,7 @@ of the Secure Boot databases), enroll again.
 ## Notes
 
 - The GRUB menu keeps the `Enroll MOK key` entry last on purpose: the
-  update tooling (`simplek8sctl`, the Controller) manages kernel
+  update tooling (`nodectl`, the Controller) manages kernel
   entries newest-first and never touches it.
 - Kernel upgrades do not require re-enrollment: staged kernels boot
   under the already-enrolled key.

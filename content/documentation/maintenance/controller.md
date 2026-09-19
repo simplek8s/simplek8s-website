@@ -77,7 +77,7 @@ $ curl -X DELETE localhost:1880/api/v1/reboots/my-node
 ## Manual updates and rollback
 
 For one node without (or outside) the Controller, use
-[simplek8sctl](/documentation/commands/simplek8sctl) — it writes the
+[nodectl](/documentation/commands/nodectl) — it writes the
 same files, and the Controller adopts a CLI-staged default through
 the normal `next-kernel` comparison once annotated.
 

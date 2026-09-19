@@ -11,9 +11,9 @@ The SimpleK8s-Update is a user-friendly program that help you to update your Sim
 
 {{< alert type="warning" >}}
 Legacy: `simplek8s-update` is superseded by
-[simplek8sctl](/documentation/commands/simplek8sctl), which shares
+[nodectl](/documentation/commands/nodectl), which shares
 its verified core with the Controller. The old binary keeps working,
-but there is no flag-compatibility promise — prefer `simplek8sctl`
+but there is no flag-compatibility promise — prefer `nodectl`
 for new installs.
 {{< /alert >}}
 
@@ -136,6 +136,6 @@ Relevant flags: `--output` (`-o`, default: the current directory),
 {{< alert type="info" >}}
 Several short aliases collide across commands and flags (`-p` is both
 `purge` and `preserve`, `-d` is both `download` and `decompress`).
-The successor [simplek8sctl](/documentation/commands/simplek8sctl)
+The successor [nodectl](/documentation/commands/nodectl)
 dropped all of them in favor of long kebab-case flags only.
 {{< /alert >}}

@@ -27,7 +27,7 @@ you can verify before you boot them.
 
 - [SimpleK8s Wizard](/documentation/commands/simplek8s-wizard);
   first boot, install to disk and cluster bootstrap from the browser.
-- [simplek8sctl](/documentation/commands/simplek8sctl); local node
+- [nodectl](/documentation/commands/nodectl); local node
   updates from the terminal.
 - [SimpleK8s Controller](/documentation/maintenance/controller);
   fleet-wide updates and supervised reboots from Kubernetes itself.

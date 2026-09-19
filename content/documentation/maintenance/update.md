@@ -12,14 +12,14 @@ There are two supported ways to manage updates.
 
 ## Option A — one node, by hand
 
-Use [simplek8sctl](/documentation/commands/simplek8sctl) on the node
+Use [nodectl](/documentation/commands/nodectl) on the node
 itself (as root). It fetches the signed release index, stages the
 kernel you ask for, and re-points the bootloader — the running kernel
 is never touched until you reboot:
 
 ```console
 $ # Newest release from the stable channel:
-$ simplek8sctl update
+$ nodectl update
 staged 202609161935
 default: /simplek8s/simplek8s.202609161935.x86-64.efi
 purged: []
@@ -28,9 +28,9 @@ $ # Reboot into it when ready:
 $ reboot
 ```
 
-Check first what would happen (`simplek8sctl check`, `simplek8sctl
+Check first what would happen (`nodectl check`, `nodectl
 update --dry-run`), keep old kernels with `--preserve`, and roll back
-with `simplek8sctl boot set <older-ts>` + reboot. The legacy
+with `nodectl boot set <older-ts>` + reboot. The legacy
 [simplek8s-update](/documentation/commands/simplek8s-update) command
 still works but is superseded.
 

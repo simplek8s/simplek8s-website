@@ -19,7 +19,7 @@ Three related changes landed together in the boot stack:
 
 - **GRUB is the managed bootloader.** The boot menu uses named
   defaults (one entry per staged kernel, newest first), and both
-  `simplek8sctl` and the Controller maintain it the same way: stage,
+  `nodectl` and the Controller maintain it the same way: stage,
   re-point, prune — with the `Enroll MOK key` entry always kept last
   and never pruned. Syslinux images keep booting exactly as before;
   nothing migrates them, nothing breaks them.

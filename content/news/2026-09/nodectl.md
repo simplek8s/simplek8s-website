@@ -1,17 +1,17 @@
 ---
-title: "SimpleK8sCtl: local node updates, rebuilt"
+title: "Nodectl: local node updates, rebuilt"
 date: 2026-09-17T00:00:00+02:00
 draft: false
 
 tags:
   - updates
-  - simplek8sctl
+  - nodectl
 authors:
   - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
 
 **TL;DR:** There is a new way to update a single SimpleK8s node by
-hand: [`simplek8sctl`](/documentation/commands/simplek8sctl). It
+hand: [`nodectl`](/documentation/commands/nodectl). It
 replaces the legacy `simplek8s-update` command and shares its verified
 core with the [SimpleK8s
 Controller](/documentation/maintenance/controller).
@@ -19,7 +19,7 @@ Controller](/documentation/maintenance/controller).
 `simplek8s-update` served us well, but it grew organically: seven
 subcommands, short flags that collide with each other, per-command
 quirks, and its own update mechanism (`selfupdate`) that never quite
-fit how the distro ships. `simplek8sctl` starts over with five flat
+fit how the distro ships. `nodectl` starts over with five flat
 subcommands — `check`, `update`, `list`, `purge`, `boot` — plus a
 `version` introspection, written with stdlib only (`flag` +
 `log/slog`) and tested end to end on real nodes.
@@ -44,13 +44,13 @@ A few things I'm particularly happy with:
   reboot into a staged kernel and back (~15 seconds each way).
 - **Small, static, everywhere**: one `CGO_ENABLED=0` binary per
   architecture (`amd64`, `arm64`), published per release on
-  `dl.simplek8s.org/simplek8sctl/` (`dev`, `rolling`, `stable`), with
-  `simplek8sctl version` reporting exactly what build you're running.
+  `dl.simplek8s.org/simplek8s-nodectl/` (`dev`, `rolling`, `stable`), with
+  `nodectl version` reporting exactly what build you're running.
 
 The old `simplek8s-update` keeps working — no flag-compatibility
 promise, but no forced migration either. If you maintain scripts
 around it, the [command
-reference](/documentation/commands/simplek8sctl) lists every
+reference](/documentation/commands/nodectl) lists every
 difference; the [update
 guide](/documentation/maintenance/update) walks through the manual
 flow side by side with the automated one. Enjoy! 🎉

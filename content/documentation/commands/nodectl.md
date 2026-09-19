@@ -1,13 +1,13 @@
 ---
-title: "simplek8sctl"
+title: "nodectl"
 date: 2026-09-17T00:00:00Z
 draft: false
 aliases:
-- /documentation/maintenance/simplek8sctl
+- /documentation/maintenance/nodectl
 ---
 ## Description
 
-`simplek8sctl` is the local-node administration tool: the successor of
+`nodectl` is the local-node administration tool: the successor of
 [simplek8s-update](/documentation/commands/simplek8s-update), rebuilt
 on the same verified core as the
 [SimpleK8s Controller](/documentation/maintenance/controller). It
@@ -20,7 +20,7 @@ on operational errors and `2` on misuse.
 
 {{< alert type="info" >}}
 Flags go before positional arguments
-(`simplek8sctl update --url dev 202609121031`), following standard
+(`nodectl update --url dev 202609121031`), following standard
 `getopt` order.
 {{< /alert >}}
 
@@ -41,7 +41,7 @@ and the staged kernels. Read-only: it never writes to the boot
 partition.
 
 ```console
-$ simplek8sctl check
+$ nodectl check
 flavor: x86-64
 running: 202609161303
 staged-newest: 202609161303
@@ -65,7 +65,7 @@ never touched: rebooting into the new release is left to you (or to
 the Controller).
 
 ```console
-$ simplek8sctl update --url dev 202609121031
+$ nodectl update --url dev 202609121031
 staged 202609121031
 default: /simplek8s/simplek8s.202609121031.x86-64.efi
 purged: []
@@ -95,7 +95,7 @@ Local staged versions, the running kernel and the current bootloader
 default. Read-only.
 
 ```console
-$ simplek8sctl list
+$ nodectl list
 running: 202609161303
 bootloader: grub
 default: /simplek8s/simplek8s.202609161303.x86-64.efi
@@ -113,34 +113,35 @@ foreign files are never touched. It never asks for confirmation —
 preview with `--dry-run`.
 
 ```console
-$ simplek8sctl purge --preserve 3
+$ nodectl purge --preserve 3
 deleted: [simplek8s.202608211728.x86-64.efi]
 kept: [202608291203 202609061935 202609090435 202609121031 202609161303]
 ```
 
 ### Boot
 
-Inspect or re-point the bootloader default without downloading
-anything. `set` refuses a release whose file is absent from the boot
+Inspect the bootloader default with no arguments, or re-point it at
+a staged release by passing its `ts` — no downloading involved.
+Setting refuses a release whose file is absent from the boot
 partition.
 
 ```console
-$ simplek8sctl boot show
+$ nodectl boot
 bootloader: grub
 default: /simplek8s/simplek8s.202609161303.x86-64.efi
 staged:
   simplek8s.202609121031.x86-64.efi
   simplek8s.202609161303.x86-64.efi
 
-$ simplek8sctl boot set 202609121031
+$ nodectl boot 202609121031
 default: /simplek8s/simplek8s.202609161303.x86-64.efi -> /simplek8s/simplek8s.202609121031.x86-64.efi
 ```
 
 ### Version
 
 ```console
-$ simplek8sctl version
-simplek8sctl v0.4.2 (abc1234, built 2026-09-16T23:20:00Z)
+$ nodectl version
+nodectl v0.4.2 (abc1234, built 2026-09-16T23:20:00Z)
 ```
 
 ## Detection notes
