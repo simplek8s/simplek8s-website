@@ -26,13 +26,13 @@ watch: ## Build and watch for changes.
 
 build: ## Build local website container.
 	docker buildx build \
-		--tag registry.jlsalvador.online/simplek8s/website \
+		--tag ghcr.io/simplek8s/simplek8s-website \
 		--load \
 		.
 
 publish: ## Publish public website container.
 	docker buildx build \
 		--platform 'linux/amd64,linux/arm64' \
-		--tag registry.jlsalvador.online/simplek8s/website \
+		--tag ghcr.io/simplek8s/simplek8s-website \
 		--push \
 		.

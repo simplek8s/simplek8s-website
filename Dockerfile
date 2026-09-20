@@ -4,9 +4,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 FROM --platform=$BUILDPLATFORM builder_base AS builder
-COPY . ./
-ARG CACHEBUST
-RUN echo "$CACHEBUST"
+COPY --parents hugo.toml archetypes assets config content data layouts static themes ./
 RUN --mount=type=cache,target=/tmp/hugo_cache \
     hugo --minify --environment production
 
