@@ -4,9 +4,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 FROM --platform=$BUILDPLATFORM builder_base AS builder
-COPY --parents hugo.toml archetypes assets config content data layouts static themes ./
+COPY --parents hugo.toml archetypes assets config content layouts static ./
 RUN --mount=type=cache,target=/tmp/hugo_cache \
-    hugo --minify --environment production
+  hugo --minify --environment production
 
 FROM nginx:latest AS site
 COPY <<EOF /etc/nginx/conf.d/privacy.conf
