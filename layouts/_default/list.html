@@ -7,7 +7,14 @@
     </span>
   {{ end }}
   <a href="{{ $page.Permalink }}">
+    {{- if $page.Params.strikethrough -}}
+    <s>{{ $page.Title }}</s>
+    {{- if ne (printf "%T" $page.Params.strikethrough) "bool" -}}
+    <span class="text-muted small"> {{ $page.Params.strikethrough }}</span>
+    {{- end -}}
+    {{- else -}}
     {{ $page.Title }}
+    {{- end -}}
   </a>
 {{ end }}
 
@@ -29,20 +36,27 @@
     </article>
 
     <ul>
-      {{- $sections := .Sections.ByWeight -}}
-      {{- $pages := (complement .Sections .Pages) -}}
+      {{- $sections := .Sections -}}
+      {{- $pages := (complement $sections .Pages) -}}
       {{- if $page.Params.order_by_date -}}
         {{- $sections = (sort $sections "Date").Reverse -}}
         {{- $pages = (sort $pages "Date").Reverse -}}
+      {{- else -}}
+        {{- $sections = (sort $sections "Weight" "desc") -}}
+        {{- $pages = (sort $pages "Weight" "desc") -}}
       {{- end -}}
       {{- range $sections -}}
         {{- $section := . -}}
+        {{- $sectionPages := (sort .Pages "Weight" "desc") -}}
+        {{- if $page.Params.order_by_date -}}
+          {{- $sectionPages = (sort .Pages "Date").Reverse -}}
+        {{- end -}}
         <li>
             <a href="{{ .RelPermalink }}">
               {{ .LinkTitle }}
             </a>
           <ul>
-          {{ range .Pages }}
+          {{ range $sectionPages }}
             <li>
               {{- partial "list_page_title" . -}}
             </li>

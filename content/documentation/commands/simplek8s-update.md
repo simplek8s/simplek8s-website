@@ -2,6 +2,8 @@
 title: "simplek8s-update"
 date: 2024-01-08T20:32:02Z
 draft: false
+weight: -100
+strikethrough: "(replaced)"
 aliases:
 - /documentation/maintenance/simplek8s-update
 ---
@@ -10,11 +12,12 @@ aliases:
 The SimpleK8s-Update is a user-friendly program that help you to update your SimpleK8s node.
 
 {{< alert type="warning" >}}
-Legacy: `simplek8s-update` is superseded by
+Replaced: `simplek8s-update` has been replaced by
 [nodectl](/documentation/commands/nodectl), which shares
-its verified core with the Controller. The old binary keeps working,
-but there is no flag-compatibility promise — prefer `nodectl`
-for new installs.
+its verified core with the Controller. The old binary is being
+removed from the distribution — do not build new scripts on it,
+and migrate any existing ones to `nodectl` (there is no
+flag-compatibility promise).
 {{< /alert >}}
 
 The command `simplek8s-update` is located by default in `/usr/local/bin/simplek8s-update`.

@@ -2,6 +2,7 @@
 title: "Update"
 date: 2024-01-09T07:59:06+01:00
 draft: false
+weight: 1
 ---
 
 ## SimpleK8s
@@ -30,9 +31,7 @@ $ reboot
 
 Check first what would happen (`nodectl check`, `nodectl
 update --dry-run`), keep old kernels with `--preserve`, and roll back
-with `nodectl boot <older-ts>` + reboot. The legacy
-[simplek8s-update](/documentation/commands/simplek8s-update) command
-still works but is superseded.
+with `nodectl boot <older-ts>` + reboot.
 
 ## Option B — the whole cluster, automated
 

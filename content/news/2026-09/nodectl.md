@@ -47,10 +47,11 @@ A few things I'm particularly happy with:
   `dl.simplek8s.org/simplek8s-nodectl/` (`dev`, `rolling`, `stable`), with
   `nodectl version` reporting exactly what build you're running.
 
-The old `simplek8s-update` keeps working — no flag-compatibility
-promise, but no forced migration either. If you maintain scripts
-around it, the [command
-reference](/documentation/commands/nodectl) lists every
-difference; the [update
-guide](/documentation/maintenance/update) walks through the manual
-flow side by side with the automated one. Enjoy! 🎉
+The old `simplek8s-update` is on its way out: the next distro
+release simply drops the binary, and `nodectl` takes its place. You
+don't have to do anything — no migration steps, no flags to
+translate by hand; just use `nodectl` from now on. If you do
+maintain scripts around the old binary, the [command
+reference](/documentation/commands/nodectl) lists every difference.
+
+Enjoy! 🎉

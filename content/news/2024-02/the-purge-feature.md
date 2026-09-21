@@ -1,6 +1,7 @@
 ---
 title: "The Purge Feature"
 date: 2024-02-13T20:14:30+01:00
+updated: 2026-09-21T00:00:00+01:00
 draft: false
 
 tags:
@@ -9,6 +10,13 @@ tags:
 authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
+
+{{< alert type="info" >}}
+Note: `simplek8s-update` has been replaced by
+[nodectl](/documentation/commands/nodectl) and is being removed
+from the distribution. The equivalent command today is
+`nodectl purge`.
+{{< /alert >}}
 
 I am excited to announce the latest improvement to the [simplek8s-update](/documentation/commands/simplek8s-update) component.
 

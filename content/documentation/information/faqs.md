@@ -55,13 +55,13 @@ A: SimpleK8s does not include a package manager. However, you can run any contai
 
 A: Yes, SimpleK8s includes the following unique applications:
 - [simplek8s-wizard](/documentation/commands/simplek8s-wizard): An optional web UI running at `:5443` that assists you in the installation and setup of your Kubernetes cluster. You can utilize `kubeadm` instead. It can be disabled at any time using the command `systemctl disable --now simplek8s-wizard`
-- [simplek8s-update](/documentation/commands/simplek8s-update): A program that checks and upgrades the SimpleK8s kernel image.
+- [nodectl](/documentation/commands/nodectl): A program that checks and upgrades the SimpleK8s kernel image. It replaces the legacy [simplek8s-update](/documentation/commands/simplek8s-update), which is being removed from the distribution.
 
 
 **Q: How often are updates and security patches released for this Linux distribution?**
 
 A: SimpleK8s follows a rolling-release upgrade approach.
-Whenever a program (such as Systemd, Containerd, Kubernetes, etc.) is updated, an automated build system generates a new SimpleK8s kernel image. This new version is initially released as a `rolling` update for the [simplek8s-update](/documentation/commands/simplek8s-update) program. Once we receive sufficient successful reports indicating that the new release correctly launches a fully functional Kubernetes cluster (single and multi-node, control-plane, and worker roles), the release is promoted as `stable`. These procedures are replicated for each supported platform, including `x86-64` and `rpi4`.
+Whenever a program (such as Systemd, Containerd, Kubernetes, etc.) is updated, an automated build system generates a new SimpleK8s kernel image. This new version is initially released as a `rolling` update for the [nodectl](/documentation/commands/nodectl) program. Once we receive sufficient successful reports indicating that the new release correctly launches a fully functional Kubernetes cluster (single and multi-node, control-plane, and worker roles), the release is promoted as `stable`. These procedures are replicated for each supported platform, including `x86-64` and `rpi4`.
 
 
 **Q: Is there an active and helpful community around this Linux distribution for support and troubleshooting?**

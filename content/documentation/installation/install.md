@@ -2,6 +2,7 @@
 title: "Installation guide"
 date: 2024-01-30T20:22:58+01:00
 draft: false
+weight: 1
 ---
 
 ## 1. Dump SimpleK8s image into your disk

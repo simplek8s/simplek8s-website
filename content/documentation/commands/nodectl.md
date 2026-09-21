@@ -7,7 +7,8 @@ aliases:
 ---
 ## Description
 
-`nodectl` is the local-node administration tool: the successor of
+`nodectl` is the local-node administration tool: the replacement for
+the legacy
 [simplek8s-update](/documentation/commands/simplek8s-update), rebuilt
 on the same verified core as the
 [SimpleK8s Controller](/documentation/maintenance/controller). It
