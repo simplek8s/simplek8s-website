@@ -5,9 +5,14 @@ draft: false
 weight: 1
 ---
 
-## 1. Dump SimpleK8s image into your disk
+## 1. Install SimpleK8s with nodectl
 
-List all the block devices to identify the destination device for SimpleK8s.
+`nodectl install` downloads the distro IMG and installs it onto a
+whole-disk device; it also creates a `/var` partition expanded to the
+maximum free space on the device.
+
+From a running SimpleK8s node, list all the block devices to identify
+the destination device.
 
 ```console
 $ lsblk
@@ -20,115 +25,61 @@ xda    259:0    0  1.8T  0 disk
 xdb    259:0    0    1G  0 disk
 ```
 
-Write the SimpleK8s image to the destination device:
-
 {{< alert type="warning" >}}
-__THIS WILL OVERWRITE THE DESTINATION DEVICE WITHOUT PROMPT.__
+**ALL DATA ON THE DESTINATION DEVICE WILL BE DESTROYED.**
 
-Verify twice before press ENTER.
+Verify twice before running the command.
 {{< /alert >}}
 
 ```console
-# SimpleK8s images for others platforms can be found in {{< ref "/download" >}}
+$ nodectl install /dev/xdb
+root password (typing hidden):
+confirm root password (typing hidden):
 
-$ curl https://dl.simplek8s.org/simplek8s/stable/simplek8s.latest.x86-64.img.zst | zstdcat | dd of=/dev/xdb
+ALL DATA ON /dev/xdb WILL BE DESTROYED.
+Press Ctrl+C or Enter to cancel, or wait 10s to continue.
+Continuing in 1s...
+downloaded 60 MiB / wrote 513 MiB...
+
+Installed SimpleK8s 202609241139 on /dev/xdb
 ```
 
-## 2. Data persistance
+The command asks for the root password (twice, typing hidden) and writes
+a `simplek8s.yaml` with the root password and the `/var` mount — or pass
+your own with `-config`. Before writing, it prints the destructive
+warning and waits 10 seconds: press `Ctrl+C` or `Enter` to cancel, or
+let the countdown run to continue.
 
-To create a persistent `/var` partition on the device:
+Flags (before the positional arguments):
 
-1. Execute `fdisk /dev/xdb`.
-2. Press `n` and Enter, to create a new partition.
-3. Press `p` and Enter, to create a primary partition.
-4. Press Enter, to accept default partition number.
-5. Press Enter, to accept default first sector.
-6. Press Enter, to accept default last sector.
-7. Press `w` and Enter, to save all changes.
+- `-url`: release channel (`dev`, `rolling` or `stable`) or a custom
+  base URL. Default: `stable`.
+- `-config`: install FILE as `simplek8s.yaml` instead of prompting for
+  the root password and writing the `/var` mount.
+- `-dry-run`: print the plan; download and touch nothing.
+- `-yes`: skip the confirmation countdown (required without a terminal).
+- `<ts>` (optional, before the device): install a specific release
+  instead of the newest one in the channel.
+
+## 2. Secure Boot
+
+With Secure Boot disabled, or when booting in BIOS mode, there is
+nothing else to do.
+
+On a UEFI system you can check the state with:
 
 ```console
-$ fdisk /dev/xdb
-
-Welcome to fdisk (util-linux 2.39.3).
-Changes will remain in memory only, until you decide to write them.
-Be careful before using the write command.
-
-Command (m for help): n
-Partition type
-   p   primary (1 primary, 0 extended, 3 free)
-   e   extended (container for logical partitions)
-Select (default p): p
-Partition number (2-4, default 2):
-First sector (1050624-2097151, default 1050624):
-Last sector, +/-sectors or +/-size{K,M,G,T,P} (1050624-2097151, default 2097151):
-
-Created a new partition 2 of type 'Linux' and of size 510 MiB.
-
-Command (m for help): w
-The partition table has been altered.
-Syncing disks.
+$ od -A n -t x1 /sys/firmware/efi/efivars/SecureBoot-*
+06 00 00 00 01
 ```
 
-Create a filesystem for the `/var` partition.
-
-```console
-$ mkfs.ext4 -L simplek8s /dev/xdb2
-```
-
-Mount the first partition to edit the `simplek8s.yaml.example` file.
-
-```console
-$ mount /dev/xdb1 /mnt
-$ nano /mnt/simplek8s/simplek8s.yaml.example
-```
-
-Modify the root password, ssh passphrase, storage mounts, static IP, etc. in the `simplek8s.yaml.example` file.
-
-{{< alert type="info" >}}
-You can create a passwordHash using the next command:
-
-```console
-$ openssl passwd -6
-```
-{{< /alert >}}
-
-```yaml
-users:
-  - name: "root"
-    passwordHash: "$6$n2yzXErLUUm5/C38$PtFZeevgw7A5LlD7J8WZlElsIl6yfpse4F6MeVx0GhIHn9WdHkVePiyd2x/kQE2UeJit.tKPn/Yez0fvL9O0K." # root
-    sshAuthorizedKeys:
-      - "ssh-ed25519 AAA..." # your SSH passphrase
-storage:
-  mounts:
-    - what: /dev/disk/by-label/simplek8s
-      where: /var
-```
-
-Rename the `simplek8s.yaml.example` to enable it.
-
-```console
-$ mv /mnt/simplek8s/simplek8s.yaml.example /mnt/simplek8s/simplek8s.yaml
-$ umount /mnt
-```
-
-If using EFI to boot your system, create a new boot entry.
-
-```console
-$ efibootmgr -c -d /dev/xdb -p 1 -L SimpleK8s -l '\EFI\BOOT\BOOTX64.EFI'
-```
-
-## 3. Secure Boot
-
-With Secure Boot disabled, or when booting in BIOS mode, the system boots directly and there is nothing else to do.
+The last byte is the state: `01` means enabled, `00` means disabled
+(the file is absent when the machine is not booted with UEFI). Secure
+Boot is a machine setting, so check it on the machine the new device
+will run on.
 
 With Secure Boot enabled, enroll the SimpleK8s key once per machine:
+[Secure Boot](/documentation/installation/secure-boot/).
 
-1. Boot the new device. In the GRUB menu, select `Enroll MOK key (first boot with Secure Boot)`.
-2. In MokManager, select `Enroll key from disk`, choose the disk, and open `EFI/BOOT/MOK.cer`.
-3. Check that the key details belong to SimpleK8s, select `Continue`, answer `Yes` to `Enroll the key(s)?`, and select `Reboot`.
-
-Done. Later boots, including future SimpleK8s kernel upgrades, work unattended without repeating this step.
-Background and notes: [Secure Boot](/documentation/installation/secure-boot/).
-
-__Done!__
+**Done!**
 Reboot your system and boot from your new device.

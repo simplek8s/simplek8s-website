@@ -12,9 +12,7 @@ the legacy
 [simplek8s-update](/documentation/commands/simplek8s-update), rebuilt
 on the same verified core as the
 [SimpleK8s Controller](/documentation/maintenance/controller). It
-manages **its own node only** — no controller, no cluster access, no
-Kubernetes API. Use it for pre-cluster installs and out-of-band
-maintenance (or drive a fleet with an operator loop around it).
+manages **its own node only**.
 
 It must run as root on the node itself. It exits `0` on success, `1`
 on operational errors and `2` on misuse.
@@ -32,14 +30,16 @@ Flags go before positional arguments
 - **[List](#list)** — staged versions, running kernel, bootloader default (read-only)
 - **[Purge](#purge)** — retention and bootloader prune, never prompts
 - **[Boot](#boot)** — inspect or re-point the bootloader default
+- **[Install](#install)** — install the distro IMG onto a whole-disk device
+- **[Selfupdate](#selfupdate)** — check the nodectl channel + install
+  latest (auto-checked daily)
 - **[Version](#version)** — embedded build info (needs no root)
 
 ### Check
 
 Fetch and GPG-verify the release index and compare the newest release
 for this node's board flavor against the running kernel (`uname -r`)
-and the staged kernels. Read-only: it never writes to the boot
-partition.
+and the staged kernels. Read-only.
 
 ```console
 $ nodectl check
@@ -131,7 +131,7 @@ kept: [202608291203 202609061935 202609090435 202609121031 202609161303]
 Inspect the bootloader default with no arguments, or re-point it at
 a staged release by passing its `ts` — no downloading involved.
 Setting refuses a release whose file is absent from the boot
-partition.
+partition; preview the re-point with `--dry-run`.
 
 ```console
 $ nodectl boot
@@ -144,6 +144,65 @@ staged:
 $ nodectl boot 202609121031
 default: 202609161303 -> 202609121031
 ```
+### Install
+
+Download the distro IMG and install it onto
+a whole-disk device: it writes the image, creates a `/var` partition
+expanded to the maximum free space, and writes the `simplek8s.yaml`
+with the root password and the `/var` mount. The device must be a whole
+disk — everything on it is destroyed.
+
+It asks for the root password (twice, typing hidden), then prints the
+destructive warning and waits 10 seconds — press `Ctrl+C` or `Enter`
+to cancel, or let the countdown run to continue:
+
+```console
+$ nodectl install -url dev /dev/sda
+root password (typing hidden):
+confirm root password (typing hidden):
+
+ALL DATA ON /dev/sda WILL BE DESTROYED.
+Press Ctrl+C or Enter to cancel, or wait 10s to continue.
+Continuing in 1s...
+downloaded 60 MiB / wrote 513 MiB...
+
+Installed SimpleK8s 202609241139 on /dev/sda
+```
+
+Usage: `nodectl install [flags] [<ts>] <device>` — flags before the
+release `ts`, `ts` before the device. Without a `ts` it installs the
+newest release of the channel.
+
+Flags:
+
+- **`--url`**: release channel (`dev`, `rolling` or `stable`) or a
+  custom base URL. Default: `stable`.
+- **`--config`**: install FILE as `simplek8s.yaml` instead of prompting
+  for the root password and writing the `/var` mount.
+- **`--dry-run`**: print the plan; download and touch nothing.
+- **`--yes`**: skip the confirmation countdown (required without a
+  terminal).
+
+### Selfupdate
+
+Check the nodectl channel and install the latest published build, GPG-
+verified. The check also runs automatically once a day; run it to force
+a check on demand.
+
+Automatic updates can be disabled with the `NODECTL_NO_SELFUPDATE=1`
+environment variable.
+
+Flags:
+
+- **`--url`**: release channel (`dev`, `rolling` or `stable`) or a
+  custom base URL. Default: the `stable` nodectl channel
+  (`dl.simplek8s.org/simplek8s-nodectl/`) — note this is the nodectl
+  channel, not the distro releases channel.
+- **`--keyring`**: custom keyring path. Default: the keyring embedded
+  in the binary. `--keyring /dev/null` skips GPG verification
+  (break-glass only: a loud warning is printed).
+- **`--dry-run`**: print what would be installed; download and touch
+  nothing.
 
 ### Version
 
