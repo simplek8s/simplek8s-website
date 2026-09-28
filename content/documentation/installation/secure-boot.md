@@ -2,6 +2,7 @@
 title: "Secure Boot"
 date: 2026-09-17T00:26:34Z
 draft: false
+weight: 1
 ---
 ## How it works
 

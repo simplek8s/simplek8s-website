@@ -2,7 +2,7 @@
 title: "Installation guide"
 date: 2024-01-30T20:22:58+01:00
 draft: false
-weight: 1
+weight: 3
 ---
 
 ## 1. Install SimpleK8s with nodectl
@@ -45,11 +45,11 @@ Installed SimpleK8s 202609241139 on /dev/xdb
 ```
 
 The command asks for the root password (twice, typing hidden) and writes
-a `simplek8s.yaml` with the root password and the `/var` mount — or pass
-your own with `-config`. Before writing, it prints the destructive
-warning and waits 10 seconds: press `Ctrl+C` or `Enter` to cancel, or
-let the countdown run to continue.
-
+a [`simplek8s.yaml`](/documentation/installation/simplek8s-yaml/) with
+the root password and the `/var` mount — or pass your own with
+`-config`. Before writing, it prints the destructive warning and waits
+10 seconds: press `Ctrl+C` or `Enter` to cancel, or let the countdown
+run to continue.
 Flags (before the positional arguments):
 
 - `-url`: release channel (`dev`, `rolling` or `stable`) or a custom
