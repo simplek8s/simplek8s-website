@@ -1,113 +1,71 @@
 ---
 title: "simplek8s-wizard"
 date: 2023-07-17T21:49:29Z
+updated: 2026-09-30T00:00:00Z
 draft: false
 aliases:
-- /documentation/wizard
-- /documentation/maintenance/simplek8s-wizard
+  - /documentation/wizard
+  - /documentation/maintenance/simplek8s-wizard
 ---
+
 ## Description
 
-The SimpleK8s-Wizard is a user-friendly program that enables you to manage your Kubernetes node through a web-based UI.
+The SimpleK8s wizard is a web UI to install SimpleK8s and manage your
+Kubernetes cluster from the browser. No commands needed.
 
-{{< alert type="info" >}}
-The `Installer` section is only visible when using SimpleK8s without persistence.
-{{< /alert >}}
+To open it, go to: `https://<your-node-IP>:5443`
 
-To access the web UI, go to: `https://<your-node-IP>:5443`
+Log in as `root`:
 
-By default, the SimpleK8s-Wizard is enabled. However, you can disable it using the following command:
+- On a **live** session (booted from ISO, nothing installed), the
+  password is shown on the node's own screen — a fresh one is generated
+  on every boot.
+- On an **installed** node, use the root password you set during the install.
+
+By default the wizard is enabled. To disable it:
 
 ```console
 # systemctl disable --now simplek8s-wizard
 ```
 
+Step-by-step guides with screenshots: [web installation](/documentation/installation/install-web/).
 
-## Sections
+## Views
 
-- **[Installer](#installer)** (visible only on non-persistent environments)
-- **[Status](#status)**
-	- **Node**
-		- Name
-		- CPU
-		- RAM
-		- Storage
-		- Interfaces
-		- Mountpoints
-		- Process list
-- **[KubeAdm](#kubeadm)**
-	- **Create or Join a K8s cluster** (visible only on nodes that have not the folder `/etc/kubernetes`)
-	- **Clean up** (visible only on nodes that have the folder `/etc/kubernetes`)
-	- **Tokens** (visible only on Control Plane nodes after creation/joining)
-	- **Add-ons**
-		- Network controller (CNI)
-			- Calico
-		- Storage controller (CSI)
-		- Load Balancer controller
-			- MetalLB
-		- Ingress controller
-			- Kubernetes-Nginx
+- **[Installer](#installer)** — visible only on live (non-persistent) sessions.
+- **[KubeAdm](#kubeadm)** — create a cluster or join this node to one.
+- **[Tokens](#tokens)** — visible on control-plane nodes: mint join tokens for new nodes.
 
 ### Installer
 
-The Installer section allows you to install SimpleK8s on a persistent storage medium, such as MVME, SSD, or HDD disk drivers.
+Installs SimpleK8s on a disk of this machine.
 
 {{< alert type="warning" >}}
-Please note that the `Installer` does not support partition editing. Selecting a disk will result in a full wipe of the selected disk.
+The installer erases the whole destination disk. Type the disk path to confirm.
 {{< /alert >}}
 
-The wizard will guide you through the following steps:
-
-1. Select the disk
-2. Create partitions
-3. (Optionally) Upload a simplek8s.yaml file for configuration.
-
-
-### Status
-
-The `Status` section provides an overview of your Kubernetes node's current status and resource utilization.
-
-#### Node
-
-- **Name:** [Node Name]
-- **CPU:** [CPU Details]
-- **RAM:** [RAM Details]
-- **Storage:** [Storage Details]
-- **Interfaces:** [Network Interfaces Details]
-- **Mountpoints:** [Mounted Filesystems Details]
-- **Process List:** [List of Running Processes]
-
+Fill in: disk, release channel (`dev` for the latest), version
+(`latest`), and either a root password (typed twice) or your own
+`simplek8s.yaml` in `Custom` mode. Press Install, wait a few seconds,
+then reboot from the disk.
 
 ### KubeAdm
 
-The `KubeAdm` section allows you to manage your Kubernetes cluster setup.
+Two modes:
 
-#### Create or Join a K8s Cluster
+- **Create cluster** — on a fresh installed node. Set the API server
+  advertise address and the node hostname, press Create. This node
+  becomes the first control plane.
+- **Join cluster** — paste the JSON join config (minted on the
+  `Tokens` page of a control-plane node) and press Join. Works for
+  both control-plane and worker nodes.
 
-In this section, you can create a new Kubernetes cluster or join an existing one.
+Progress logs stream on the page; press Continue when done.
 
-#### Tokens
+### Tokens
 
-This section is only visible on Control Plane nodes after successfully creating or joining a Kubernetes cluster. It allows you to create `kubeadm` tokens to join new nodes.
-
-
-### Add-ons
-
-The `Add-ons` section lets you configure various Kubernetes add-ons for enhanced functionality.
-
-#### Network Controller (CNI)
-
-- **Calico:** Set up the Calico network controller for your cluster.
-
-#### Storage Controller (CSI)
-
-Configure the storage controller for seamless storage management in your Kubernetes cluster.
-
-#### Load Balancer Controller
-
-- **MetalLB:** Set up MetalLB, the Load Balancer controller, to efficiently distribute incoming traffic.
-
-#### Ingress Controller
-
-- **Kubernetes-Nginx:** Set up the Kubernetes-Nginx Ingress controller to manage incoming HTTP and HTTPS traffic.
-
+Mint join tokens for new nodes: pick the role (`control-plane` or
+`worker`), type the new node's hostname, and press Create. The page
+shows the `kubeadm join` command and the JSON config to paste into the
+new node's KubeAdm page. Tokens expire — mint fresh ones if a join
+complains.
