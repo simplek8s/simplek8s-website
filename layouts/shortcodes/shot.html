@@ -1,0 +1,11 @@
+{{- $src := .Get "src" }}
+{{- $alt := .Get "alt" }}
+{{- $caption := .Get "caption" }}
+<figure class="figure my-3 d-block text-center mx-auto" style="max-width: 50%; min-width: 320px;">
+  <a href="{{ $src }}" target="_blank" rel="noopener">
+    <img src="{{ $src }}" class="figure-img img-fluid img-thumbnail" alt="{{ $alt }}" loading="lazy">
+  </a>
+  {{- with $caption }}
+  <figcaption class="figure-caption">{{ . }}</figcaption>
+  {{- end }}
+</figure>

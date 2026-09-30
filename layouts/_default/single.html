@@ -9,6 +9,9 @@
     {{ end }}
     <article>
       <h1>{{ .Title }}</h1>
+      {{- if .Params.toc }}
+        {{ partial "main/toc" . -}}
+      {{ end }}
       {{- if or .Params.show_date .Params.show_authors -}}
         <p class="small text-muted mb-4">
 
