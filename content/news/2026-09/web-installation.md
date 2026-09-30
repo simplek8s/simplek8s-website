@@ -33,7 +33,7 @@ you from a bare machine to a multi-node cluster in three acts:
 Everything you need to see is shown: live progress logs, the exact
 join commands, token expiry. Nothing happens behind your back, and the
 terminal path is still there for whoever wants it ([terminal
-installation guide](/documentation/installation/install/),
+installation guide](/documentation/installation/install-terminal/),
 `kubeadm`, [`nodectl`](/documentation/commands/nodectl)).
 
 Grab the latest stable ISO on the [download page](/download/) and try

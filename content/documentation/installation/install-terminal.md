@@ -1,5 +1,5 @@
 ---
-title: "Installation guide"
+title: "Terminal installation guide"
 date: 2024-01-30T20:22:58+01:00
 draft: false
 weight: 3

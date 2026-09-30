@@ -4,6 +4,8 @@ date: 2026-09-30T00:00:00Z
 draft: false
 weight: 4
 toc: true
+aliases:
+- /documentation/installation/install/
 ---
 
 Install SimpleK8s and build a Kubernetes cluster from your browser.
@@ -114,4 +116,4 @@ join — without typing a single command.
 ## Notes
 
 - With Secure Boot enabled, enroll the SimpleK8s key once per machine — see [Secure Boot](/documentation/installation/secure-boot/).
-- Prefer the terminal? Follow the [terminal installation guide](/documentation/installation/install/).
+- Prefer the terminal? Follow the [terminal installation guide](/documentation/installation/install-terminal/).

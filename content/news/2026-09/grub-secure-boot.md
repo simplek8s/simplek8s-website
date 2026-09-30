@@ -25,7 +25,7 @@ Three related changes landed together in the boot stack:
   nothing migrates them, nothing breaks them.
 - **Hybrid `.ISO` images for `x86-64`.** One image boots on a classic
   BIOS (CD or USB stick) and on UEFI, following the regular
-  [installation guide](/documentation/installation/install/).
+  [terminal installation guide](/documentation/installation/install-terminal/).
 - **Secure Boot with MOK.** The ESP ships a Microsoft-signed shim, so
   machines with Secure Boot enabled get past firmware verification;
   you then enroll the SimpleK8s key once per machine from the GRUB
