@@ -25,10 +25,10 @@ you can verify before you boot them.
 
 ## Ecosystem
 
-- [SimpleK8s Wizard](/documentation/commands/simplek8s-wizard);
-  first boot, install to disk and cluster bootstrap from the browser.
-- [nodectl](/documentation/commands/nodectl); local node
-  updates from the terminal.
+- [nodectl](/documentation/commands/nodectl); local node updates from
+  the terminal, and the `nodectl wizard` web UI to install to disk and
+  bootstrap the cluster from the browser
+  ([Web installation guide](/documentation/installation/install-web/)).
 - [SimpleK8s Controller](/documentation/maintenance/controller);
   fleet-wide updates and supervised reboots from Kubernetes itself.
 

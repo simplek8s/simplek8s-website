@@ -3,6 +3,8 @@ title: "simplek8s-wizard"
 date: 2023-07-17T21:49:29Z
 updated: 2026-09-30T00:00:00Z
 draft: false
+weight: -100
+strikethrough: "(replaced)"
 aliases:
   - /documentation/wizard
   - /documentation/maintenance/simplek8s-wizard
@@ -12,6 +14,12 @@ aliases:
 
 The SimpleK8s wizard is a web UI to install SimpleK8s and manage your
 Kubernetes cluster from the browser. No commands needed.
+
+{{< alert type="warning" >}}
+Replaced: `simplek8s-wizard` has been replaced by `nodectl wizard`,
+documented in the [Web installation guide](/documentation/installation/install-web/).
+Do not build new scripts on this legacy service.
+{{< /alert >}}
 
 To open it, go to: `https://<your-node-IP>:5443`
 

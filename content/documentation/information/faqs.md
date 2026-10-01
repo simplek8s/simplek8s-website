@@ -54,8 +54,8 @@ A: SimpleK8s does not include a package manager. However, you can run any contai
 **Q: Are there any unique features or applications included in this Linux distribution?**
 
 A: Yes, SimpleK8s includes the following unique applications:
-- [simplek8s-wizard](/documentation/commands/simplek8s-wizard): An optional web UI running at `:5443` that assists you in the installation and setup of your Kubernetes cluster. You can utilize `kubeadm` instead. It can be disabled at any time using the command `systemctl disable --now simplek8s-wizard`
-- [nodectl](/documentation/commands/nodectl): A program that checks and upgrades the SimpleK8s kernel image. It replaces the legacy [simplek8s-update](/documentation/commands/simplek8s-update), which is being removed from the distribution.
+- [Web installation guide](/documentation/installation/install-web/): An optional web UI (the `nodectl wizard`) running at `:5443` that assists you in the installation and setup of your Kubernetes cluster. You can utilize `kubeadm` instead.
+- [nodectl](/documentation/commands/nodectl): A program that checks and upgrades the SimpleK8s kernel image.
 
 
 **Q: How often are updates and security patches released for this Linux distribution?**
