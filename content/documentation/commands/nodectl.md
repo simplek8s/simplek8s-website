@@ -179,6 +179,15 @@ $ nodectl install --ssh-key "ssh-ed25519 AAAA... user@host" \
 $ nodectl install --ssh-keys-file ~/.ssh/authorized_keys /dev/sda
 ```
 
+For non-interactive installs, the root password can also come from a
+file or the environment instead of the tty prompt (no confirmation
+round-trip in either case):
+
+```console
+$ nodectl install --password-file /run/secrets/root-pw --yes /dev/sda
+$ NODECTL_ROOT_PASSWORD=secretpwd1 nodectl install --yes /dev/sda
+```
+
 Usage: `nodectl install [flags] [<ts>] <device>` — flags before the
 release `ts`, `ts` before the device. Without a `ts` it installs the
 newest release of the channel.
@@ -189,9 +198,14 @@ Flags:
   custom base URL. Default: `stable`.
 - **`--config`**: install FILE as `simplek8s.yaml` instead of prompting
   for the root password and writing the `/var` mount. The file is
-  installed verbatim, so it cannot be combined with `--ssh-key` or
-  `--ssh-keys-file` — put the keys in the file instead
-  (`ssh_authorized_keys`).
+  installed verbatim, so it cannot be combined with `--ssh-key`,
+  `--ssh-keys-file`, `--password-file` or `$NODECTL_ROOT_PASSWORD` —
+  put `password_hash`/`ssh_authorized_keys` in the file instead.
+- **`--password-file`**: read the root password from FILE (trailing
+  newline ignored). Takes precedence over `$NODECTL_ROOT_PASSWORD`.
+- **`$NODECTL_ROOT_PASSWORD`**: environment alternative to
+  `--password-file` (empty counts as unset). Useful with `--yes` for
+  fully non-interactive installs.
 - **`--ssh-key`**: root SSH public key, one key per flag; repeat the
   flag for several keys. Same format as the web installer: one
   `authorized_keys` line per key. Optional.
