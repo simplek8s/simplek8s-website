@@ -169,6 +169,16 @@ downloaded 60 MiB / wrote 513 MiB...
 Installed SimpleK8s 202609241139 on /dev/sda
 ```
 
+Like the [web installer](/documentation/installation/install-web/),
+it can also store root SSH public keys in the generated
+`simplek8s.yaml` (`ssh_authorized_keys`):
+
+```console
+$ nodectl install --ssh-key "ssh-ed25519 AAAA... user@host" \
+    --ssh-key "ssh-rsa BBBB... other@host" /dev/sda
+$ nodectl install --ssh-keys-file ~/.ssh/authorized_keys /dev/sda
+```
+
 Usage: `nodectl install [flags] [<ts>] <device>` — flags before the
 release `ts`, `ts` before the device. Without a `ts` it installs the
 newest release of the channel.
@@ -178,7 +188,15 @@ Flags:
 - **`--url`**: release channel (`dev`, `rolling` or `stable`) or a
   custom base URL. Default: `stable`.
 - **`--config`**: install FILE as `simplek8s.yaml` instead of prompting
-  for the root password and writing the `/var` mount.
+  for the root password and writing the `/var` mount. The file is
+  installed verbatim, so it cannot be combined with `--ssh-key` or
+  `--ssh-keys-file` — put the keys in the file instead
+  (`ssh_authorized_keys`).
+- **`--ssh-key`**: root SSH public key, one key per flag; repeat the
+  flag for several keys. Same format as the web installer: one
+  `authorized_keys` line per key. Optional.
+- **`--ssh-keys-file`**: file with root SSH public keys, one per line
+  (blank lines ignored). Can be combined with `--ssh-key`.
 - **`--dry-run`**: print the plan; download and touch nothing.
 - **`--yes`**: skip the confirmation countdown (required without a
   terminal).

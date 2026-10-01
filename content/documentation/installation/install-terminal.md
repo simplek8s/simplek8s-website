@@ -50,12 +50,29 @@ the root password and the `/var` mount — or pass your own with
 `-config`. Before writing, it prints the destructive warning and waits
 10 seconds: press `Ctrl+C` or `Enter` to cancel, or let the countdown
 run to continue.
+
+Root SSH public keys are optional, like in the
+[web installer](/documentation/installation/install-web/): pass one
+`--ssh-key` per key, or a file with one key per line via
+`--ssh-keys-file`:
+
+```console
+$ nodectl install --ssh-key "ssh-ed25519 AAAA... user@host" /dev/xdb
+```
+
 Flags (before the positional arguments):
 
 - `-url`: release channel (`dev`, `rolling` or `stable`) or a custom
   base URL. Default: `stable`.
 - `-config`: install FILE as `simplek8s.yaml` instead of prompting for
-  the root password and writing the `/var` mount.
+  the root password and writing the `/var` mount. The file is
+  installed verbatim, so it cannot be combined with `-ssh-key` or
+  `-ssh-keys-file` — put the keys in the file instead
+  (`ssh_authorized_keys`).
+- `-ssh-key`: root SSH public key, one key per flag; repeat for
+  several keys. Optional.
+- `-ssh-keys-file`: file with root SSH public keys, one per line
+  (blank lines ignored). Optional, combinable with `-ssh-key`.
 - `-dry-run`: print the plan; download and touch nothing.
 - `-yes`: skip the confirmation countdown (required without a terminal).
 - `<ts>` (optional, before the device): install a specific release

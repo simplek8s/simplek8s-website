@@ -45,8 +45,9 @@ The `Installer` page appears because the live session is not persistent yet.
 2. **Channel**: `stable` (recommended), `rolling` (releases getting ready for stable), or `dev` (latest builds to try out).
 3. **Version**: keep `latest`.
 4. **Root password**: type it twice (or switch to `Custom` and paste your own `simplek8s.yaml` instead — see below).
-5. **Confirm**: type the disk path (for example `/dev/vda`) to prove you checked it twice.
-6. Press **Install SimpleK8s**.
+5. **SSH keys** (optional): paste root SSH public keys, one per line.
+6. **Confirm**: type the disk path (for example `/dev/vda`) to prove you checked it twice.
+7. Press **Install SimpleK8s**.
 
 Prefer a config file? Select `Custom` and paste (or upload) your [`simplek8s.yaml`](/documentation/installation/simplek8s-yaml/):
 
