@@ -2,6 +2,7 @@
 title: "nodectl"
 date: 2026-09-17T00:00:00Z
 draft: false
+toc: true
 aliases:
 - /documentation/maintenance/nodectl
 ---
@@ -15,7 +16,8 @@ on the same verified core as the
 manages **its own node only**.
 
 It must run as root on the node itself. It exits `0` on success, `1`
-on operational errors and `2` on misuse.
+on operational errors and `2` on misuse. `wizard` adds a fourth:
+`3` (idle) when the node has nothing to manage — not an error.
 
 {{< alert type="info" >}}
 Flags go before positional arguments
@@ -25,15 +27,7 @@ Flags go before positional arguments
 
 ## Subcommands
 
-- **[Check](#check)** — newest indexed release vs running vs staged (read-only)
-- **[Update](#update)** — stage a release, retention, bootloader re-point
-- **[List](#list)** — staged versions, running kernel, bootloader default (read-only)
-- **[Purge](#purge)** — retention and bootloader prune, never prompts
-- **[Boot](#boot)** — inspect or re-point the bootloader default
-- **[Install](#install)** — install the distro IMG onto a whole-disk device
-- **[Selfupdate](#selfupdate)** — check the nodectl channel + install
-  latest (auto-checked daily)
-- **[Version](#version)** — embedded build info (needs no root)
+Each subcommand is detailed below, in the same order `nodectl help` lists them.
 
 ### Check
 
@@ -214,6 +208,40 @@ Flags:
 - **`--dry-run`**: print the plan; download and touch nothing.
 - **`--yes`**: skip the confirmation countdown (required without a
   terminal).
+
+### Wizard
+
+Serve the [web setup wizard](/documentation/installation/install-web/):
+an HTTPS server (self-signed, ephemeral certificate regenerated on
+every start) on port `5443` with an embedded single-page UI. This is
+what the `simplek8s-wizard.service` unit runs, so
+`systemctl disable --now simplek8s-wizard` still opts out.
+
+Login is root-only, with the root password (the one printed on the
+live console, or the installed one). What the wizard offers depends
+on the detected node state:
+
+- **`live`** (booted from the ISO, nothing installed): the installer
+  — same whole-disk install as [`nodectl install`](#install), plus a
+  reboot button when it finishes.
+- **`fresh`** (installed, not in a cluster yet): run `kubeadm init`
+  to create a cluster or join this node to an existing one.
+- **`cp`** (control plane): mint, list and revoke join tokens.
+- **`worker`** (joined worker): nothing to manage — the command logs
+  so and exits `3` (idle) instead of serving.
+
+The listening URL is announced on the node's own console via
+`/run/issue.d/50-wizard.issue`, removed on shutdown.
+
+Flags:
+
+- **`--listen`**: HTTPS listen address (`host:port`). Default
+  `0.0.0.0:5443`.
+
+```console
+# nodectl wizard
+time=2026-10-06T09:00:00Z level=INFO msg="wizard listening" listen=https://0.0.0.0:5443
+```
 
 ### Selfupdate
 
