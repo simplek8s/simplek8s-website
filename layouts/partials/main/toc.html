@@ -1,4 +1,4 @@
-{{- if .TableOfContents }}
+{{- if findRE `<a href="#` .TableOfContents }}
 <nav class="toc card my-3" aria-label="On this page">
   <div class="card-body py-2">
     <p class="card-title mb-1"><strong>On this page</strong></p>
