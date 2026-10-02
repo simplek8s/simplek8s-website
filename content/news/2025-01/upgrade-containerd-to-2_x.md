@@ -20,7 +20,7 @@ configuration file.
 Follow these steps to upgrade Containerd:
 
 1. Ensure you are using at least SimpleK8s version **202501171928**,
-[download it here](/download).
+[download it here](/download/).
 2. Stop the Containerd service:
     ```sh
     systemctl stop containerd

@@ -34,7 +34,7 @@ Everything you need to see is shown: live progress logs, the exact
 join commands, token expiry. Nothing happens behind your back, and the
 terminal path is still there for whoever wants it ([terminal
 installation guide](/documentation/installation/install-terminal/),
-`kubeadm`, [`nodectl`](/documentation/commands/nodectl)).
+`kubeadm`, [`nodectl`](/documentation/commands/nodectl/)).
 
 Grab the latest stable ISO on the [download page](/download/) and try
 it — a three-node cluster is minutes away. 🎉

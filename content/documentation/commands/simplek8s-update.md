@@ -13,7 +13,7 @@ The SimpleK8s-Update is a user-friendly program that help you to update your Sim
 
 {{< alert type="warning" >}}
 Replaced: `simplek8s-update` has been replaced by
-[nodectl](/documentation/commands/nodectl), which shares
+[nodectl](/documentation/commands/nodectl/), which shares
 its verified core with the Controller. The old binary is being
 removed from the distribution — do not build new scripts on it,
 and migrate any existing ones to `nodectl` (there is no
@@ -139,6 +139,6 @@ Relevant flags: `--output` (`-o`, default: the current directory),
 {{< alert type="info" >}}
 Several short aliases collide across commands and flags (`-p` is both
 `purge` and `preserve`, `-d` is both `download` and `decompress`).
-The successor [nodectl](/documentation/commands/nodectl)
+The successor [nodectl](/documentation/commands/nodectl/)
 dropped all of them in favor of long kebab-case flags only.
 {{< /alert >}}

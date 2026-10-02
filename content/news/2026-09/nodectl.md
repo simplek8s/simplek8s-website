@@ -11,10 +11,10 @@ authors:
 ---
 
 **TL;DR:** There is a new way to update a single SimpleK8s node by
-hand: [`nodectl`](/documentation/commands/nodectl). It
+hand: [`nodectl`](/documentation/commands/nodectl/). It
 replaces the legacy `simplek8s-update` command and shares its verified
 core with the [SimpleK8s
-Controller](/documentation/maintenance/controller).
+Controller](/documentation/maintenance/controller/).
 
 `simplek8s-update` served us well, but it grew organically: seven
 subcommands, short flags that collide with each other, per-command
@@ -51,6 +51,6 @@ release simply drops the binary, and `nodectl` takes its place. You
 don't have to do anything — no migration steps, no flags to
 translate by hand; just use `nodectl` from now on. If you do
 maintain scripts around the old binary, the [command
-reference](/documentation/commands/nodectl) lists every difference.
+reference](/documentation/commands/nodectl/) lists every difference.
 
 Enjoy! 🎉

@@ -9,7 +9,7 @@ authors:
 - José Luis Salvador Rufo <salvador.joseluis+simplek8s@gmail.com>
 ---
 
-These days, I have been working on enhancing the [Download](/download) page.
+These days, I have been working on enhancing the [Download](/download/) page.
 
 Previously, it was just a dump of the official [SHA256SUMS](https://dl.simplek8s.org/simplek8s/stable/SHA256SUMS), contradicting the simplicity philosophy of this distribution.
 

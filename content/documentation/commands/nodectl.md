@@ -10,9 +10,9 @@ aliases:
 
 `nodectl` is the local-node administration tool: the replacement for
 the legacy
-[simplek8s-update](/documentation/commands/simplek8s-update), rebuilt
+[simplek8s-update](/documentation/commands/simplek8s-update/), rebuilt
 on the same verified core as the
-[SimpleK8s Controller](/documentation/maintenance/controller). It
+[SimpleK8s Controller](/documentation/maintenance/controller/). It
 manages **its own node only**.
 
 It must run as root on the node itself. It exits `0` on success, `1`

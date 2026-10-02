@@ -25,11 +25,11 @@ you can verify before you boot them.
 
 ## Ecosystem
 
-- [nodectl](/documentation/commands/nodectl); local node updates from
+- [nodectl](/documentation/commands/nodectl/); local node updates from
   the terminal, and the `nodectl wizard` web UI to install to disk and
   bootstrap the cluster from the browser
   ([Web installation guide](/documentation/installation/install-web/)).
-- [SimpleK8s Controller](/documentation/maintenance/controller);
+- [SimpleK8s Controller](/documentation/maintenance/controller/);
   fleet-wide updates and supervised reboots from Kubernetes itself.
 
 The code lives at [github.com/simplek8s](https://github.com/simplek8s);

@@ -55,13 +55,13 @@ A: SimpleK8s does not include a package manager. However, you can run any contai
 
 A: Yes, SimpleK8s includes the following unique applications:
 - [Web installation guide](/documentation/installation/install-web/): An optional web UI (the `nodectl wizard`) running at `:5443` that assists you in the installation and setup of your Kubernetes cluster. You can utilize `kubeadm` instead.
-- [nodectl](/documentation/commands/nodectl): A program that checks and upgrades the SimpleK8s kernel image.
+- [nodectl](/documentation/commands/nodectl/): A program that checks and upgrades the SimpleK8s kernel image.
 
 
 **Q: How often are updates and security patches released for this Linux distribution?**
 
 A: SimpleK8s follows a rolling-release upgrade approach.
-Whenever a program (such as Systemd, Containerd, Kubernetes, etc.) is updated, an automated build system generates a new SimpleK8s kernel image. This new version is initially released as a `rolling` update for the [nodectl](/documentation/commands/nodectl) program. Once we receive sufficient successful reports indicating that the new release correctly launches a fully functional Kubernetes cluster (single and multi-node, control-plane, and worker roles), the release is promoted as `stable`. These procedures are replicated for each supported platform, including `x86-64` and `rpi4`.
+Whenever a program (such as Systemd, Containerd, Kubernetes, etc.) is updated, an automated build system generates a new SimpleK8s kernel image. This new version is initially released as a `rolling` update for the [nodectl](/documentation/commands/nodectl/) program. Once we receive sufficient successful reports indicating that the new release correctly launches a fully functional Kubernetes cluster (single and multi-node, control-plane, and worker roles), the release is promoted as `stable`. These procedures are replicated for each supported platform, including `x86-64` and `rpi4`.
 
 
 **Q: Is there an active and helpful community around this Linux distribution for support and troubleshooting?**

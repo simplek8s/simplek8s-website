@@ -13,7 +13,7 @@ There are two supported ways to manage updates.
 
 ## Option A — one node, by hand
 
-Use [nodectl](/documentation/commands/nodectl) on the node
+Use [nodectl](/documentation/commands/nodectl/) on the node
 itself (as root). It fetches the signed release index, stages the
 kernel you ask for, and re-points the bootloader — the running kernel
 is never touched until you reboot:
@@ -35,7 +35,7 @@ with `nodectl boot <older-ts>` + reboot.
 
 ## Option B — the whole cluster, automated
 
-Deploy the [SimpleK8s Controller](/documentation/maintenance/controller):
+Deploy the [SimpleK8s Controller](/documentation/maintenance/controller/):
 each node stages verified releases on schedule and reboots into them
 only inside your maintenance windows — or only when you say so via
 the reboot API. Rollback is one annotation edit
