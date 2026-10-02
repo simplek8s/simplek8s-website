@@ -2,6 +2,7 @@
 title: "simplek8s-update"
 date: 2024-01-08T20:32:02Z
 draft: false
+toc: true
 weight: -100
 strikethrough: "(replaced)"
 aliases:

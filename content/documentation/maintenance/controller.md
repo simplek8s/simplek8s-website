@@ -2,6 +2,7 @@
 title: "SimpleK8s Controller"
 date: 2026-09-17T00:00:00Z
 draft: false
+toc: true
 ---
 ## Description
 
