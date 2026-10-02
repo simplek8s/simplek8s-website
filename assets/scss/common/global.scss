@@ -26,6 +26,8 @@ blockquote {
   @extend .py-1;
 }
 
+/* Markdown tables get Bootstrap's .table look */
 table {
+  @extend .table;
   margin-bottom: 1rem;
 }
