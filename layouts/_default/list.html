@@ -6,7 +6,7 @@
       {{ " — " }}
     </span>
   {{ end }}
-  <a href="{{ $page.Permalink }}">
+  <a href="{{ $page.RelPermalink }}">
     {{- if $page.Params.strikethrough -}}
     <s>{{ $page.Title }}</s>
     {{- if ne (printf "%T" $page.Params.strikethrough) "bool" -}}
