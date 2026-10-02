@@ -19,9 +19,8 @@ Controller](/documentation/maintenance/controller).
 `simplek8s-update` served us well, but it grew organically: seven
 subcommands, short flags that collide with each other, per-command
 quirks, and its own update mechanism (`selfupdate`) that never quite
-fit how the distro ships. `nodectl` starts over with five flat
-subcommands — `check`, `update`, `list`, `purge`, `boot` — plus a
-`version` introspection, written with stdlib only (`flag` +
+fit how the distro ships. `nodectl` starts over with flat
+subcommands, written with stdlib only (`flag` +
 `log/slog`) and tested end to end on real nodes.
 
 A few things I'm particularly happy with:
