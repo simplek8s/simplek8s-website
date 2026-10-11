@@ -3,13 +3,18 @@ title: "About"
 date: 2023-07-10T08:06:00+02:00
 draft: false
 aliases:
-- /documentation/about
+  - /documentation/about
 ---
 
 SimpleK8s is a lightweight Linux distribution whose only job is to
 run Kubernetes clusters effortlessly: one bootable file per board
 (`x86-64`, `rpi4`, `rpi5`), immutable by design, with signed releases
 you can verify before you boot them.
+
+The distro is rolling: every time one of its components gets a new release
+(Kubernetes, kernel LTS, containerd, etc.), CI/CD builds and publishes a new
+image, and it moves from `dev` to `rolling` to `stable` as the community
+validates it.
 
 ## Principles
 
@@ -32,5 +37,7 @@ you can verify before you boot them.
 - [SimpleK8s Controller](/documentation/maintenance/controller/);
   fleet-wide updates and supervised reboots from Kubernetes itself.
 
-The code lives at [github.com/simplek8s](https://github.com/simplek8s);
-issues, ideas and pull requests are welcome.
+The code lives at [github.com/simplek8s](https://github.com/simplek8s): issues,
+ideas and pull requests are welcome. Discuss anything at
+[github.com/simplek8s/discussions](https://github.com/orgs/simplek8s/discussions),
+or write to [community@simplek8s.org](mailto:community@simplek8s.org).
