@@ -1,0 +1,22 @@
+div.center {
+    & {
+        @extend .text-center;
+
+        ul {
+            @extend .list-inline;
+
+            li {
+                @extend .list-inline-item;
+                @extend .mb-4;
+
+                a {
+                    text-decoration: none;
+                }
+            }
+
+            li:not(:first-child) {
+                margin: 0 1rem;
+            }
+        }
+    }
+}

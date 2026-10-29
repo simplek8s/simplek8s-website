@@ -8,8 +8,9 @@
 }
 
 .hero {
-  @extend .p-4;
-  @extend .m-4;
+  @extend .pt-4;
+  @extend .mt-4;
+  @extend .mb-0;
   @extend .text-center;
 
   img {
@@ -47,6 +48,8 @@
 
   p {
     @extend .lead;
-    @extend .mb-4;
+    
+    margin-top: 3rem;
+    margin-bottom: 0;
   }
 }

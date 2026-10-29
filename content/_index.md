@@ -4,6 +4,13 @@ date: 2023-06-23T18:10:03+02:00
 draft: false
 ---
 
+{{< center >}}
+
+- [🤔 About](/documentation/information/about/)
+- [🧩 Features](/documentation/information/features/)
+- [❓ FAQs](/documentation/information/faqs/)
+{{< /center >}}
+
 ## Start in minutes
 
 - **[Install from the browser](/documentation/installation/install-web/)** —
@@ -30,7 +37,3 @@ standard tooling (`kubectl`, Helm, ArgoCD, Flux, Terraform) works as is.
 Non-profit and community-driven: questions, ideas and feedback at
 [github.com/simplek8s/discussions](https://github.com/orgs/simplek8s/discussions),
 or [community@simplek8s.org](mailto:community@simplek8s.org).
-
-[About](/documentation/information/about/) ·
-[FAQs](/documentation/information/faqs/) ·
-[Features](/documentation/information/features/)
