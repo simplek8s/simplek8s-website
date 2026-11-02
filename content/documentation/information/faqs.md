@@ -17,7 +17,7 @@ The system requirements for different scenarios are as follows:
 
 - Bare minimum to boot:
   - 1 CPU
-  - 40Mb Storage
+  - 128Mb Storage
   - 128Mb RAM.
 - Minimum recommended:
   - 1 CPU

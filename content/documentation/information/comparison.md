@@ -17,7 +17,7 @@ commercial backing.
 
 | Aspect                 | SimpleK8s                                                                                                  | K3s · Talos · Microk8s                                                      |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| Image                  | Single immutable file, ~40 MB, GPG-signed before you boot it                                               | Lightweight distro or single binary (mutable base OS)                       |
+| Image                  | Single immutable file, ~60–80 MB, GPG-signed before you boot it                                            | Lightweight distro or single binary (mutable base OS)                       |
 | Distro upgrades        | Rolling: new image every component release, GPG- and sha256-verified, one-command rollback                 | Per project (`k3s upgrade`, `talosctl`, `microk8sctl`)                      |
 | Node management        | Declarative `simplek8s.yaml` + `nodectl` + Kubernetes-native controller (annotations, ConfigMap, HTTP API) | kubeadm-based tools per project                                             |
 | HA                     | Wizard for multiple control planes; controller with control-plane-aware reboots                            | Documented HA setups per project                                            |
@@ -33,7 +33,7 @@ commercial backing.
   the stack fully**.
 - You want **signed, immutable images** with rolling distro upgrades and
   one-command rollback.
-- Minimal footprint (~40 MB) and no vendor lock-in.
+- Minimal footprint (~60–80 MB) and no vendor lock-in.
 - Community support (no SLA) is enough for you.
 
 ## When to choose the others

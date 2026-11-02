@@ -11,7 +11,7 @@ aliases:
 
 - 🧭 **Predictable**: Streamlined essentials for a production-ready Kubernetes cluster, free from unnecessary bloatware.
 
-- 🪶 **Lightweight**: Only ~40MB in size, built with Buildroot for embedded Linux distributions.
+- 🪶 **Lightweight**: Only ~60MB on `x86-64` and ~80MB on the Raspberry Pi boards, built with Buildroot for embedded Linux distributions.
 
 - 📦 **Embedded**: Complete Linux distribution packed in a single bootable file.
 
@@ -21,14 +21,14 @@ aliases:
 
 - 🤝 **Compatibility**: Seamless integration with Kubernetes using standard toolsets like Linux, Systemd, Containerd and Kubeadm — `kubectl`, Helm, ArgoCD, Flux and Terraform work as usual.
 
-💾 **Proven integrations**: Ceph (CephFS, CephRBD) and NFS for storage;
+- 💾 **Proven integrations**: Ceph (CephFS, CephRBD) and NFS for storage;
 Calico and MetalLB for networking.
 
 - 🔧 **Preconfigurable**: Easily configure your system on each reboot with an optional `simplek8s.yaml` file.
 
 - ⚙️ **Rolling distro**: a new image is published every time any component is released (new Kubernetes, kernel, containerd, ...); images move from `dev` to `rolling` to `stable` as the community validates them.
 
-- ⏫ **Upgradeable**: Perform upgrades anytime with a simple `simplek8s-upgrade` command and reboot.
+- ⏫ **Upgradeable**: Perform upgrades anytime with the [`nodectl update`](/documentation/commands/nodectl/#update) command and reboot; roll back just as easily with `nodectl boot`.
 
 - 🧬 **Cloneable**: Gain independence by cloning this distribution whenever desired.
 

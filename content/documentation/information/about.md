@@ -21,7 +21,7 @@ validates it.
 - **Boring to operate**: flash, boot, join. Day-two operations;
   updates, reboots, rollbacks; are explicit, observable commands,
   not background magic.
-- **Small and auditable**: a minimal Buildroot-based system (~40 MB)
+- **Small and auditable**: a minimal Buildroot-based system (~60–80 MB)
   with no bloatware and no hidden state; configuration lives in one
   optional `simplek8s.yaml`.
 - **Signed and open**: every release is GPG-signed and checksummed;
