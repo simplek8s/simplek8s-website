@@ -1,10 +1,10 @@
 {{ if eq (hugo.Environment) "development" -}}
-  {{ $options := (dict "targetPath" "main.css" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
-  {{ $css := resources.Get "scss/app.scss" | toCSS $options -}}
+  {{ $options := (dict "transpiler" "dartsass" "targetPath" "main.css" "enableSourceMap" true "includePaths" (slice "node_modules")) -}}
+  {{ $css := resources.Get "scss/app.scss" | css.Sass $options -}}
   <link rel="stylesheet" href="{{ $css.Permalink | relURL }}">
 {{ else -}}
-  {{ $options := (dict "targetPath" "main.css" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
-  {{ $css := resources.Get "scss/app.scss" | toCSS $options | postCSS (dict "noMap" true "config" "config/postcss.config.js") | minify | resources.Fingerprint "sha512" | resources.PostProcess -}}
+  {{ $options := (dict "transpiler" "dartsass" "targetPath" "main.css" "outputStyle" "compressed" "includePaths" (slice "node_modules")) -}}
+  {{ $css := resources.Get "scss/app.scss" | css.Sass $options | postCSS (dict "noMap" true "config" "config/postcss.config.js") | minify | resources.Fingerprint "sha512" -}}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
 {{- end }}
   <noscript><style>img.lazyload { display: none; }</style></noscript>

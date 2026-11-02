@@ -19,6 +19,7 @@ Built with [Hugo](https://gohugo.io/) and deployed as a static site served by Ng
 ## Prerequisites
 
 - [Hugo](https://gohugo.io/) (extended)
+- [Dart Sass](https://sass-lang.com/dart-sass/) (the `dart-sass` package; required by the `dartsass` transpiler)
 - Node.js and npm
 - Docker (for container builds)
 
